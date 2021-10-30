@@ -1,0 +1,20 @@
+@import "color";
+
+.list-webtoon, .wrap:not(:last-child),
+header, .webtoon-info, .login-form, .view-header,
+.images-episode,.bottom-info, .comments{
+  background: $main-white;
+}
+body{
+  background: $main-BG;
+}
+header{
+  background: $main-white;
+}
+.webtoon-info-title{
+  font-weight: 800;
+  font-size: 1.6rem;
+}
+.btn-view-all-comment{
+  color: $main-BG
+}

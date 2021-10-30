@@ -1,8 +1,11 @@
-import { LOGIN } from './user.type';
+import { LOGIN, LOGOUT } from './user.type';
+import Cookies from 'universal-cookie/lib';
+
+const cookies = new Cookies();
 
 const initialState = {
   user: {},
-  token: '',
+  token: cookies.get('x-jwt') || '',
 };
 
 export default function userReducer(state = initialState, action) {
@@ -11,6 +14,11 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         token: action.payload.token,
+      };
+    case LOGOUT:
+      return {
+        user: {},
+        token: '',
       };
     default:
       return state;

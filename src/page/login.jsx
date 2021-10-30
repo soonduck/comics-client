@@ -1,16 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../lib/api';
 import Cookies from 'universal-cookie/lib';
+import { useHistory } from 'react-router-dom';
 
 export const Login = ({ onLogin, token }) => {
+  // states
   const [loginInput, setLoginInput] = useState({ userId: '', password: '' });
 
+  //variables
+  const history = useHistory();
+  if (token) history.push('/');
+
+  //functions
   const onClick = () => {
     api.post('user/login', loginInput).then((res) => {
       const cookies = new Cookies();
       onLogin({ token: cookies.get('x-jwt') });
     });
+    history.push('/');
   };
+
   return (
     <form className="login-form">
       <input
