@@ -1,3 +1,3 @@
 export const LOGIN = 'user/LOGIN';
 export const LOGOUT = 'user/LOGOUT';
-export const MYINFO = 'user/MYINFO';
+export const MY_INFO = 'user/MY_INFO';

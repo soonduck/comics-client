@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, MYINFO } from './user.type';
+import { LOGIN, LOGOUT, MY_INFO } from './user.type';
 
 export const login = (token) => ({
   type: LOGIN,
@@ -8,6 +8,6 @@ export const logout = () => ({
   type: LOGOUT,
 });
 export const myInfo = (user) => ({
-  type: MYINFO,
+  type: MY_INFO,
   payload: { user },
 });

@@ -1,11 +1,21 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie/lib';
+import api from '../../lib/api';
 
-export const Header = ({ token, onLogout }) => {
+export const Header = ({
+  token,
+  onLogout,
+  genres,
+  onSetGenres,
+  genre,
+  onSetGenre,
+}) => {
   const [dropdown, setDropdown] = useState(false);
 
   const history = useHistory();
+  const location = useLocation();
+  const pathname = location.pathname.split('/')[1];
 
   const toLogin = () => {
     if (token) return;
@@ -23,6 +33,13 @@ export const Header = ({ token, onLogout }) => {
   };
 
   useEffect(() => {
+    if (!pathname) {
+      api.get('webtoon/genres').then((res) => {
+        onSetGenres(res.data);
+      });
+    }
+  }, []);
+  useEffect(() => {
     setDropdown(false);
   }, [token]);
 
@@ -31,7 +48,9 @@ export const Header = ({ token, onLogout }) => {
       <div className="header-wrap">
         <section className="top-header">
           <h1 className="logo-title">
-            <Link to="/">soonduck-page</Link>
+            <button type="button" onClick={() => history.push('/')}>
+              soonduck-page
+            </button>
           </h1>
           <div className="header-right">
             <form className="search-form">
@@ -72,6 +91,28 @@ export const Header = ({ token, onLogout }) => {
             )}
           </div>
         </section>
+        {pathname ? (
+          <></>
+        ) : (
+          <section className="bottom-header">
+            <ul className="list-genre">
+              {genres.length ? (
+                genres.map(({ id, name }) => (
+                  <li
+                    key={id}
+                    className={
+                      'item-genre' + (genre === id ? ' genre-active' : '')
+                    }
+                  >
+                    <button onClick={() => onSetGenre(id)}>{name}</button>
+                  </li>
+                ))
+              ) : (
+                <></>
+              )}
+            </ul>
+          </section>
+        )}
       </div>
     </header>
   );
