@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from './user.type';
+import { LOGIN, LOGOUT, MYINFO } from './user.type';
 import Cookies from 'universal-cookie/lib';
 
 const cookies = new Cookies();
@@ -19,6 +19,11 @@ export default function userReducer(state = initialState, action) {
       return {
         user: {},
         token: '',
+      };
+    case MYINFO:
+      return {
+        ...state,
+        user: action.payload.user,
       };
     default:
       return state;

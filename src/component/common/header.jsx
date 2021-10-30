@@ -1,5 +1,6 @@
 import { Link, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Cookies from 'universal-cookie/lib';
 
 export const Header = ({ token, onLogout }) => {
   const [dropdown, setDropdown] = useState(false);
@@ -13,6 +14,12 @@ export const Header = ({ token, onLogout }) => {
 
   const dropdownClick = () => {
     setDropdown(!dropdown);
+  };
+
+  const logout = () => {
+    onLogout();
+    const cookies = new Cookies();
+    cookies.remove('x-jwt');
   };
 
   useEffect(() => {
@@ -50,7 +57,7 @@ export const Header = ({ token, onLogout }) => {
                     <Link to={'/'}>작품정보</Link>
                   </li>
                   <li className="item-dropdown">
-                    <button type="button" onClick={onLogout}>
+                    <button type="button" onClick={logout}>
                       로그아웃
                     </button>
                   </li>

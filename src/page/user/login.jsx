@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import api from '../lib/api';
+import api from '../../lib/api';
 import Cookies from 'universal-cookie/lib';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export const Login = ({ onLogin, token }) => {
   // states
@@ -36,7 +36,7 @@ export const Login = ({ onLogin, token }) => {
           setLoginInput({ ...loginInput, password: target.value })
         }
       />
-      <span>아직 회원이 아니신가요?</span>
+      <Link to="/join">아직 회원이 아니신가요?</Link>
       <button type="button" onClick={onClick}>
         로그인
       </button>
