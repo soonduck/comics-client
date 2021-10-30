@@ -4,7 +4,7 @@ import { Header } from '../../component/common/header';
 
 export const HeaderContainer = () => {
   const { token } = useSelector((state) => ({
-    token: state.userReducer.token,
+    token: state?.userReducer.token,
   }));
   const dispatch = useDispatch();
   const onLogout = () => dispatch(logout());

@@ -4,7 +4,7 @@ import { Login } from '../../page/login';
 
 export const LoginContainer = () => {
   const { token } = useSelector((state) => ({
-    token: state.userReducer.token,
+    token: state?.userReducer.token,
   }));
   const dispatch = useDispatch();
 
