@@ -18,9 +18,15 @@ export const ViewerHeader = ({ episode, onSetEpisode }) => {
   const webtoonId = queryString.parse(location.search).webtoonId;
 
   const nextEpisode = (count) => {
-    if (episode.orderNum + count <= 0) setFirst(true);
+    if (episode.orderNum + count <= 0) {
+      setFirst(true);
+      return;
+    }
     // const webtoonId = queryString.parse(location.search).webtoonId;
-    if (count === 1 && episode.isLast) setLast(true);
+    if (count === 1 && episode.isLast) {
+      setLast(true);
+      return;
+    }
     api
       .get(
         'webtoon/view/episode/' +
@@ -30,6 +36,14 @@ export const ViewerHeader = ({ episode, onSetEpisode }) => {
       )
       .then((res) => {
         if (res.data.episode && !res.data.episode.pay) {
+          onSetEpisode(res.data.episode);
+          history.push(
+            '/view/episode/' +
+              res.data.episode.orderNum +
+              '?webtoonId=' +
+              webtoonId,
+          );
+        } else if (res.data.episode) {
           onSetEpisode(res.data.episode);
           history.push(
             '/view/episode/' +
@@ -47,7 +61,11 @@ export const ViewerHeader = ({ episode, onSetEpisode }) => {
 
   return (
     <>
-      {pay.ok ? <PayCoin setPay={setPay} pay={pay} /> : ''}
+      {pay.ok ? (
+        <PayCoin setPay={setPay} pay={pay} onSetEpisode={onSetEpisode} />
+      ) : (
+        ''
+      )}
       {login ? <NeedLogin setLogin={setLogin} /> : ''}
       {first ? <FirstEpisode setFirst={setFirst} /> : ''}
       {last ? <LastEpisode setLast={setLast} /> : ''}

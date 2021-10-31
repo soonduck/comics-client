@@ -5,10 +5,8 @@ import { setEpisode, setWebtoon } from '../../redux/webtoon/webtoon.action';
 import queryString from 'query-string';
 
 export const ViewerContainer = () => {
-  const { episode, webtoon } = useSelector((state) => ({
-    viewer: state?.webtoonReducer.viewer,
+  const { episode } = useSelector((state) => ({
     episode: state?.webtoonReducer.episode,
-    webtoon: state?.webtoonReducer.webtoon,
   }));
 
   const params = useParams();
