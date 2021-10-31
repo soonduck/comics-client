@@ -36,6 +36,7 @@ export const Header = ({
     onLogout();
     const cookies = new Cookies();
     cookies.remove('x-jwt');
+    console.log(token, cookies.get('x-jwt'));
   };
 
   useEffect(() => {

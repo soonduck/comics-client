@@ -18,7 +18,7 @@ export default function userReducer(state = initialState, action) {
     case LOGOUT:
       return {
         user: {},
-        token: '',
+        token: null,
       };
     case MY_INFO:
       return {

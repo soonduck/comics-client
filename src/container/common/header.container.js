@@ -9,16 +9,13 @@ import {
 } from '../../redux/webtoon/webtoon.action';
 
 export const HeaderContainer = () => {
-  const { token, genres, genre, viewer, webtoonName, episode } = useSelector(
-    (state) => ({
-      token: state?.userReducer.token,
-      genres: state?.webtoonReducer.genres,
-      genre: state?.webtoonReducer.genre,
-      viewer: state?.webtoonReducer.viewer,
-      webtoonName: state?.webtoonReducer.webtoon.name,
-      episode: state?.webtoonReducer.episode,
-    }),
-  );
+  const { token, genres, genre, viewer, episode } = useSelector((state) => ({
+    token: state?.userReducer.token,
+    genres: state?.webtoonReducer.genres,
+    genre: state?.webtoonReducer.genre,
+    viewer: state?.webtoonReducer.viewer,
+    episode: state?.webtoonReducer.episode,
+  }));
 
   const dispatch = useDispatch();
 

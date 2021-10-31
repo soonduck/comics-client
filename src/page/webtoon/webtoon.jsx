@@ -46,6 +46,7 @@ export const Webtoon = ({
               onSetEpisode={onSetEpisode}
               setPay={setPay}
               setLogin={setLogin}
+              webtoon={webtoon}
             />
           ))}
         </ul>

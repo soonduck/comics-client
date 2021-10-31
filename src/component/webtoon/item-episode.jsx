@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom';
 import api from '../../lib/api';
-import { useState } from 'react';
 
 export const ItemEpisode = ({
   id,
@@ -12,6 +11,7 @@ export const ItemEpisode = ({
   onSetEpisode,
   setPay,
   setLogin,
+  webtoon,
 }) => {
   const history = useHistory();
 
@@ -19,7 +19,7 @@ export const ItemEpisode = ({
     api.get('webtoon/view/episode/' + id).then((res) => {
       if (res.data.ok) {
         onSetEpisode(res.data.episode);
-        history.push('/view/episode/' + id);
+        history.push('/view/episode/' + id + '?webtoonId=' + webtoon.id);
       } else if (res.data.error.includes('지불')) {
         setPay(true);
       } else if (res.data.error.includes('로그인')) {

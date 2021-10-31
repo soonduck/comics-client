@@ -7,6 +7,7 @@ const constants = {
     base: 'main-index',
     webtoon: 'main-webtoon',
     episode: 'main-viewer',
+    view: 'main-viewer',
   },
 };
 
