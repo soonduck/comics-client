@@ -1,5 +1,4 @@
 export const View = ({ episode }) => {
-  console.log(episode);
   return (
     <>
       <div className="images-episode">

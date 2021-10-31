@@ -1,5 +1,5 @@
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Cookies from 'universal-cookie/lib';
 import api from '../../lib/api';
 import { ViewerHeader } from '../webtoon/viewer-header';
@@ -28,15 +28,15 @@ export const Header = ({
     history.push('/login');
   };
 
-  const dropdownClick = () => {
-    setDropdown(!dropdown);
-  };
-
   const logout = () => {
     onLogout();
     const cookies = new Cookies();
     cookies.remove('x-jwt');
     console.log(token, cookies.get('x-jwt'));
+  };
+
+  const clickDropdown = () => {
+    setDropdown(!dropdown);
   };
 
   useEffect(() => {
@@ -82,19 +82,31 @@ export const Header = ({
             </form>
             {token ? (
               <>
-                <button type="button" onClick={dropdownClick}>
+                <button
+                  type="button"
+                  className="btn-my-info"
+                  onClick={clickDropdown}
+                >
                   <i className="fa-solid fa-user" />
                 </button>
                 <ul
                   className={'list-dropdown' + (dropdown ? '' : ' a11yHidden')}
                 >
+                  <li className="item-dropdown info-coin">
+                    <span className="title-coin">보유 코인</span>
+                    <span>
+                      <span className="bold">1320 </span>
+                      Coin
+                    </span>
+                    <Link to={'/'}>코인충전</Link>
+                  </li>
                   <li className="item-dropdown">
                     <Link to={'/'}>개인정보</Link>
                   </li>
                   <li className="item-dropdown">
                     <Link to={'/'}>작품정보</Link>
                   </li>
-                  <li className="item-dropdown">
+                  <li className="item-dropdown last-dropdown">
                     <button type="button" onClick={logout}>
                       로그아웃
                     </button>

@@ -16,16 +16,20 @@ export const ItemEpisode = ({
   const history = useHistory();
 
   const onClickEpisode = () => {
-    api.get('webtoon/view/episode/' + id).then((res) => {
-      if (res.data.ok) {
-        onSetEpisode(res.data.episode);
-        history.push('/view/episode/' + id + '?webtoonId=' + webtoon.id);
-      } else if (res.data.error.includes('지불')) {
-        setPay(true);
-      } else if (res.data.error.includes('로그인')) {
-        setLogin(true);
-      }
-    });
+    api
+      .get('webtoon/view/episode/' + orderNum + '?webtoonId=' + webtoon.id)
+      .then((res) => {
+        if (res.data.ok) {
+          onSetEpisode(res.data.episode);
+          history.push(
+            '/view/episode/' + orderNum + '?webtoonId=' + webtoon.id,
+          );
+        } else if (res.data.error.includes('지불')) {
+          setPay(true);
+        } else if (res.data.error.includes('로그인')) {
+          setLogin(true);
+        }
+      });
   };
 
   return (

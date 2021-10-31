@@ -12,6 +12,7 @@ body * {
 //래핑
 header{
   position: fixed;
+  z-index: 3;
   left: 50%;
   transform: translateX(-50%);
   top: 0;
@@ -39,11 +40,11 @@ main:not(.main-index, .main-viewer){
   display: flex;
   justify-content: space-between;
   line-height: 5rem;
-  position: relative;
   margin: 0 auto;
 }
 .header-right{
   display: flex;
+  position: relative;
 }
 .list-genre{
   justify-content: space-around;
@@ -52,18 +53,28 @@ main:not(.main-index, .main-viewer){
     //width: 95%;
     display: flex;
 }
-
 .list-dropdown{
-  position: absolute;
-  width: 100px;
-  height: 108px;
+  position: fixed;
   top: 4rem;
   right: 0;
+  width: 120px;
+  line-height: 2rem;
+  text-align: center;
+  .title-coin{
+    font-size: 14px;
+  }
+  .bold{
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
   .item-dropdown{
-    line-height: 36px;
-    height: 36px;
+    display: flex;
+    flex-direction: column;
+    height: 100%
   }
 }
+
+
 
 
 // 메인 그리드
@@ -263,6 +274,22 @@ i {
 }
 
 // 뷰어
+
+.first-notice, .last-notice, .modal-pay-coin, .modal-need-login{
+  position: fixed;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10;
+}
+.BG-gray{
+  position: fixed;
+  top: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+}
 
 .viewer-header{
   height: 4rem;

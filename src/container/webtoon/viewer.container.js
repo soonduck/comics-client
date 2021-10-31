@@ -1,14 +1,14 @@
 import { useLocation, useParams } from 'react-router-dom';
 import { Viewer } from '../../page/webtoon/viewer';
 import { useDispatch, useSelector } from 'react-redux';
-import { setEpisode } from '../../redux/webtoon/webtoon.action';
-import { useState } from 'react';
+import { setEpisode, setWebtoon } from '../../redux/webtoon/webtoon.action';
 import queryString from 'query-string';
 
 export const ViewerContainer = () => {
-  const { viewer, episode } = useSelector((state) => ({
+  const { episode, webtoon } = useSelector((state) => ({
     viewer: state?.webtoonReducer.viewer,
     episode: state?.webtoonReducer.episode,
+    webtoon: state?.webtoonReducer.webtoon,
   }));
 
   const params = useParams();
@@ -18,13 +18,16 @@ export const ViewerContainer = () => {
   const parsed = queryString.parse(location.search);
 
   const onSetEpisode = (episode) => dispatch(setEpisode(episode));
+  const onSetWebtoon = (webtoon, episodes) =>
+    dispatch(setWebtoon(webtoon, episodes));
 
   return (
     <Viewer
-      webtoonId={parsed.webtoonId}
-      episodeId={params.id}
+      orderNum={params.id}
       episode={episode}
       onSetEpisode={onSetEpisode}
+      onSetWebtoon={onSetWebtoon}
+      webtoonId={parsed.webtoonId}
     />
   );
 };
