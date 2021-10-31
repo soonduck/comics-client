@@ -12,7 +12,6 @@ export const Webtoons = ({
   useEffect(() => {
     api.get('webtoon?genre=' + genre + '&page=' + page).then((res) => {
       onSetMainWebtoons(res.data['webtoons']);
-      console.log(mainWebtoons);
     });
   }, [genre]);
 
@@ -23,6 +22,7 @@ export const Webtoons = ({
           {mainWebtoons.map((webtoon) => (
             <ItemWebtoon
               key={webtoon.id}
+              id={webtoon.id}
               url={webtoon.thumbnailUrl}
               title={webtoon.name}
             />

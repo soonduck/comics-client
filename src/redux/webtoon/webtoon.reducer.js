@@ -6,6 +6,7 @@ import {
   SET_GENRES,
   SET_PAGE,
   SET_TOTAL_PAGE,
+  SET_WEBTOON,
 } from './webtoon.type';
 
 const initialState = {
@@ -17,6 +18,8 @@ const initialState = {
   genre: 1,
   page: 1,
   totalPage: 1,
+  webtoon: {},
+  episodes: [],
 };
 export default function webtoonReducer(state = initialState, action) {
   switch (action.type) {
@@ -37,6 +40,13 @@ export default function webtoonReducer(state = initialState, action) {
       return { ...state, categories: action.payload.categories };
     case SET_ACTIVE_CATEGORIES:
       return { ...state, activeCategories: action.payload.activeCategories };
+
+    case SET_WEBTOON:
+      return {
+        ...state,
+        webtoon: action.payload.webtoon,
+        episodes: action.payload.episodes,
+      };
     default:
       return state;
   }

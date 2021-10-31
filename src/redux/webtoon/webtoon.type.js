@@ -8,3 +8,5 @@ export const SET_TOTAL_PAGE = 'webtoon/SET_TOTAL_PAGE';
 
 export const SET_CATEGORIES = 'webtoon/SET_CATEGORIES';
 export const SET_ACTIVE_CATEGORIES = 'webtoon/SET_ACTIVE_CATEGORIES';
+
+export const SET_WEBTOON = 'webtoon/SET_WEBTOON';

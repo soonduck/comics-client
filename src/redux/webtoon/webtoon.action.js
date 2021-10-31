@@ -6,6 +6,7 @@ import {
   SET_GENRES,
   SET_PAGE,
   SET_TOTAL_PAGE,
+  SET_WEBTOON,
 } from './webtoon.type';
 
 export const setMainWebtoons = (mainWebtoons) => ({
@@ -35,4 +36,8 @@ export const setCategories = (categories) => ({
 export const setActiveCategories = (activeCategories) => ({
   type: SET_ACTIVE_CATEGORIES,
   payload: { activeCategories },
+});
+export const setWebtoon = (webtoon, episodes) => ({
+  type: SET_WEBTOON,
+  payload: { webtoon, episodes },
 });

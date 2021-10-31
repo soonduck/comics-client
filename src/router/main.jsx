@@ -5,6 +5,7 @@ import { Footer } from '../component/common/footer';
 import { Join } from '../page/user/join';
 import { JoinSuccess } from '../page/user/join-success';
 import { Index } from '../page';
+import { WebtoonContainer } from '../container/webtoon/webtoon.container';
 
 export const Main = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ export const Main = () => {
         <Route path="/login" component={LoginContainer} />
         <Route path="/join" exact component={Join} />
         <Route path="/join-success" component={JoinSuccess} />
+        <Route path="/webtoon/:id" component={WebtoonContainer} />
       </Switch>
       <Footer />
     </main>
