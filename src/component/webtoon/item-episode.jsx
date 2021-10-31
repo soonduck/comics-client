@@ -1,13 +1,21 @@
-const ItemEpisode = () => {
+export const ItemEpisode = ({ id, url, info, name, orderNum, createdAt }) => {
   return (
-    <li className="item-episode">
+    <li className="item-episode" key={id}>
       <button>
-        <img src="" alt="" className="thumbnail-episode" />
+        <img src={url} alt="" className="thumbnail-episode" />
       </button>
       <span className="episode-info">
-        <span className="episode-title">friends with benefits</span>
-        <span className="episode-date">2021.10.27</span>
+        <span className="episode-title">{`${name} ${orderNum}화`}</span>
+        <span className="episode-date">{createdAt}</span>
       </span>
+      {info ? (
+        <></>
+      ) : (
+        <div className="edit-episode-buttons">
+          <button>수정</button>
+          <button>삭제</button>
+        </div>
+      )}
     </li>
   );
 };
