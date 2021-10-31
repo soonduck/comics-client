@@ -12,7 +12,7 @@ export const Webtoon = ({
   webtoonId,
   onSetEpisode,
 }) => {
-  const [pay, setPay] = useState(false);
+  const [pay, setPay] = useState({ ok: false, orderNum: 0 });
   const [login, setLogin] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export const Webtoon = ({
   }, []);
   return (
     <>
-      {pay ? <PayCoin setPay={setPay} /> : ''}
+      {pay.ok ? <PayCoin setPay={setPay} pay={pay} /> : ''}
       {login ? <NeedLogin setLogin={setLogin} /> : ''}
       <WebtoonInfo webtoon={webtoon} />
       <section className="webtoon-episodes wrap">

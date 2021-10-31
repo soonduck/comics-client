@@ -1,18 +1,21 @@
-import history from '../../lib/history';
 import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 
-export const PayCoin = ({ setPay, viewer, orderNum }) => {
+export const PayCoin = ({ setPay, viewer, pay }) => {
   const location = useLocation();
-  const webtoonId = queryString.parse(location.search).webtoonId;
+  // 웹툰 정보 페이지에서 올 경우 쿼리스트링이 아닌 패스에 웹툰 아이디 정보가 있다.
+  const webtoonId =
+    queryString.parse(location.search).webtoonId ||
+    location.pathname.split('/')[2];
 
-  console.log(orderNum);
   const goBack = () => {
-    if (viewer) history.goBack();
-    setPay(false);
+    // if (viewer) history.goBack();
+    setPay({ pay: false, orderNum: 0 });
   };
 
-  const payCoin = () => {};
+  const payCoin = () => {
+    console.log(pay, webtoonId);
+  };
 
   return (
     <>
@@ -22,7 +25,9 @@ export const PayCoin = ({ setPay, viewer, orderNum }) => {
           <button type="button" onClick={goBack}>
             아니오
           </button>
-          <button>예</button>
+          <button type="button" onClick={payCoin}>
+            예
+          </button>
         </div>
       </div>
       <div className="BG-gray"></div>
