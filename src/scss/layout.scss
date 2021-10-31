@@ -159,7 +159,7 @@ i {
 // webtoon info page
 
 // 메인 그리드
-.webtoon-main{
+.main-webtoon{
   display: grid;
   row-gap: 16px;
   grid-template:
@@ -240,6 +240,13 @@ i {
   margin-left: 6px;
 }
 
+.modal-pay-coin, .modal-need-login{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 // 로그인
 .login-main{
   display: flex;
@@ -270,7 +277,7 @@ i {
     display: flex;
   }
 }
-.viewer-main{
+.main-viewer{
   padding-top: calc(4rem);
   display: grid;
   gap: 16px;

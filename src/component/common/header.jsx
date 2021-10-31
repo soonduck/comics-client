@@ -2,6 +2,7 @@ import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'universal-cookie/lib';
 import api from '../../lib/api';
+import { ViewerHeader } from '../webtoon/viewer-header';
 
 export const Header = ({
   token,
@@ -10,6 +11,11 @@ export const Header = ({
   onSetGenres,
   genre,
   onSetGenre,
+  viewer,
+  onSetViewer,
+  episode,
+  onSetEpisode,
+  webtoonName,
 }) => {
   const [dropdown, setDropdown] = useState(false);
 
@@ -38,12 +44,24 @@ export const Header = ({
         onSetGenres(res.data);
       });
     }
-  }, []);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname === 'view') onSetViewer(true);
+    else onSetViewer(false);
+  }, [pathname]);
+
   useEffect(() => {
     setDropdown(false);
   }, [token]);
 
-  return (
+  return viewer ? (
+    <ViewerHeader
+      episode={episode}
+      webtoonName={webtoonName}
+      onSetEpisode={onSetEpisode}
+    />
+  ) : (
     <header>
       <div className="header-wrap">
         <section className="top-header">

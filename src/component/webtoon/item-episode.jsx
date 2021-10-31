@@ -1,13 +1,44 @@
-export const ItemEpisode = ({ id, url, info, name, orderNum, createdAt }) => {
+import { useHistory } from 'react-router-dom';
+import api from '../../lib/api';
+import { useState } from 'react';
+
+export const ItemEpisode = ({
+  id,
+  url,
+  info,
+  name,
+  orderNum,
+  createdAt,
+  onSetEpisode,
+  setPay,
+  setLogin,
+}) => {
+  const history = useHistory();
+
+  const onClickEpisode = () => {
+    api.get('webtoon/view/episode/' + id).then((res) => {
+      if (res.data.ok) {
+        onSetEpisode(res.data.episode);
+        history.push('/view/episode/' + id);
+      } else if (res.data.error.includes('지불')) {
+        setPay(true);
+      } else if (res.data.error.includes('로그인')) {
+        setLogin(true);
+      }
+    });
+  };
+
   return (
     <li className="item-episode" key={id}>
-      <button>
+      <button onClick={onClickEpisode} type="button">
         <img src={url} alt="" className="thumbnail-episode" />
       </button>
-      <span className="episode-info">
-        <span className="episode-title">{`${name} ${orderNum}화`}</span>
-        <span className="episode-date">{createdAt}</span>
-      </span>
+      <button className="episode-info" onClick={onClickEpisode} type="button">
+        <span className="episode-title">{name}</span>
+        <span className="episode-date">
+          {createdAt.slice(0, 10).split('-').join('.')}
+        </span>
+      </button>
       {info ? (
         <></>
       ) : (

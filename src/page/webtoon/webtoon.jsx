@@ -1,20 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../../lib/api';
 import { ItemEpisode } from '../../component/webtoon/item-episode';
+import { WebtoonInfo } from '../../component/webtoon/webtoon-info';
+import { PayCoin } from '../../component/modal/pay-coin';
+import { NeedLogin } from '../../component/modal/need-login';
 
-export const Webtoon = ({ webtoon, episodes, onSetWebtoon, webtoonId }) => {
+export const Webtoon = ({
+  webtoon,
+  episodes,
+  onSetWebtoon,
+  webtoonId,
+  onSetEpisode,
+}) => {
+  const [pay, setPay] = useState(false);
+  const [login, setLogin] = useState(false);
+
   useEffect(() => {
     api.get('webtoon/info/' + webtoonId).then((res) => {
       onSetWebtoon(res.data.webtoon, res.data.episodes);
-      console.log(res);
     });
   }, []);
   return (
     <>
+      {pay ? <PayCoin setPay={setPay} /> : ''}
+      {login ? <NeedLogin setLogin={setLogin} /> : ''}
+      <WebtoonInfo webtoon={webtoon} />
       <section className="webtoon-episodes wrap">
         <div className="total-episode-count">
-          <span>전체(2)</span>
-          <button className="btn-from">
+          <span>전체({episodes.length})</span>
+          <button className="btn-from" type="button">
             <span>최신편부터</span>
             <i className="fa-solid fa-chevron-down" />
           </button>
@@ -25,10 +39,13 @@ export const Webtoon = ({ webtoon, episodes, onSetWebtoon, webtoonId }) => {
               info={true}
               key={episode.id}
               orderNum={episode.orderNum}
-              name={webtoon.name}
+              name={episode.name}
               id={episode.id}
               url={episode.thumbnailUrl}
               createdAt={episode.createdAt}
+              onSetEpisode={onSetEpisode}
+              setPay={setPay}
+              setLogin={setLogin}
             />
           ))}
         </ul>

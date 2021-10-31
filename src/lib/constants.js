@@ -3,6 +3,11 @@ const constants = {
     base: '순덕페이지',
     login: '로그인',
   },
+  mainClass: {
+    base: 'main-index',
+    webtoon: 'main-webtoon',
+    episode: 'main-viewer',
+  },
 };
 
 export default constants;

@@ -1,20 +1,34 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/user/user.action';
 import { Header } from '../../component/common/header';
-import { setGenre, setGenres } from '../../redux/webtoon/webtoon.action';
+import {
+  setEpisode,
+  setGenre,
+  setGenres,
+  setViewer,
+} from '../../redux/webtoon/webtoon.action';
 
 export const HeaderContainer = () => {
-  const { token, genres, genre } = useSelector((state) => ({
-    token: state?.userReducer.token,
-    genres: state?.webtoonReducer.genres,
-    genre: state?.webtoonReducer.genre,
-  }));
+  const { token, genres, genre, viewer, webtoonName, episode } = useSelector(
+    (state) => ({
+      token: state?.userReducer.token,
+      genres: state?.webtoonReducer.genres,
+      genre: state?.webtoonReducer.genre,
+      viewer: state?.webtoonReducer.viewer,
+      webtoonName: state?.webtoonReducer.webtoon.name,
+      episode: state?.webtoonReducer.episode,
+    }),
+  );
 
   const dispatch = useDispatch();
 
   const onLogout = () => dispatch(logout());
   const onSetGenres = (genres) => dispatch(setGenres(genres));
   const onSetGenre = (genre) => dispatch(setGenre(genre));
+
+  const onSetEpisode = (episode) => dispatch(setEpisode(episode));
+
+  const onSetViewer = (boolean) => dispatch(setViewer(boolean));
 
   return (
     <Header
@@ -24,6 +38,10 @@ export const HeaderContainer = () => {
       onSetGenres={onSetGenres}
       genre={genre}
       onSetGenre={onSetGenre}
+      viewer={viewer}
+      episode={episode}
+      onSetEpisode={onSetEpisode}
+      onSetViewer={onSetViewer}
     />
   );
 };
