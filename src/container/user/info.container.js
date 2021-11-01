@@ -1,4 +1,4 @@
-import { WebtoonInfo } from '../../page/user/webtoon-info';
+import { MyWebtoonInfo } from '../../page/user/my-webtoon-info';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setMyViewRecords,
@@ -18,7 +18,7 @@ export const InfoContainer = () => {
     dispatch(setMyViewRecords(myViewRecords));
 
   return (
-    <WebtoonInfo
+    <MyWebtoonInfo
       myWebtoons={myWebtoons}
       myViewRecords={myViewRecords}
       onSetMyWebtoons={onSetMyWebtoons}

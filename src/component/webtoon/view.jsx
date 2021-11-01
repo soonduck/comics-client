@@ -1,4 +1,4 @@
-export const View = ({ episode }) => {
+export const View = ({ episode, episodeComments }) => {
   return (
     <>
       <div className="images-episode">
@@ -8,8 +8,8 @@ export const View = ({ episode }) => {
       </div>
       <div className="bottom-info">
         <div className="episode-info">
-          <span>Friends with benefits</span>
-          <span>soonduck</span>
+          <span>{episode.name}</span>
+          <span>{episode.writer ? episode.writer.username : ''}</span>
         </div>
         <div className="bottom-info-right">
           <div>
@@ -21,7 +21,9 @@ export const View = ({ episode }) => {
           </div>
           <div>
             <span className="count-name">댓글</span>
-            <span className="comment-count">102</span>
+            <span className="comment-count">
+              {episodeComments.commentsCount}
+            </span>
           </div>
         </div>
       </div>

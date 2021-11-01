@@ -1,0 +1,2 @@
+export const SET_EPISODE_COMMENTS = 'comment/SET_EPISODE_COMMENTS';
+export const SET_WEBTOON_COMMENTS = 'comment/SET_WEBTOON_COMMENTS';

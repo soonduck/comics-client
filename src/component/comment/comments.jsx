@@ -1,7 +1,14 @@
-export const Comments = ({ data }) => {
+import { ItemComment } from './item-comment';
+
+export const Comments = ({ episodeComments }) => {
+  console.log('comments', episodeComments.comments);
   return (
     <ul>
-      <li>{data}</li>
+      {episodeComments.comments && episodeComments.comments.length > 0
+        ? episodeComments.comments.map(({ content, id }) => {
+            return <ItemComment content={content} key={id} id={id} />;
+          })
+        : ''}
     </ul>
   );
 };
