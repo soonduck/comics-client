@@ -1,19 +1,33 @@
+import { useSelector } from 'react-redux';
+import history from '../../lib/history';
+
 export const Info = () => {
+  const { user } = useSelector((state) => ({
+    user: state?.userReducer.user,
+  }));
+
   const disableAccount = () => {};
   return (
     <section className="wrap">
-      <h2>soonduck(닉네임)님의 계정정보</h2>
+      <h2>{user.username}님의 계정정보</h2>
       <div className="wrap-my-info">
         <div className="my-id-info">
           <span>아이디</span>
-          <span>mari301509</span>
+          <span>{user.userId}</span>
         </div>
         <div className="my-nickname-info">
           <span>닉네임</span>
-          <span>soonduck</span>
+          <span>{user.username}</span>
         </div>
       </div>
-      <button className="btn-set-profile">프로필 설정</button>
+      <button
+        className="btn-set-profile"
+        onClick={() => {
+          history.push('/edit-my-info');
+        }}
+      >
+        프로필 설정
+      </button>
       <div className="set-profile-desc">
         카카오페이지 닉네임과 프로필 사진을 설정합니다.
       </div>

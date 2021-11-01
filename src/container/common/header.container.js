@@ -9,13 +9,16 @@ import {
 } from '../../redux/webtoon/webtoon.action';
 
 export const HeaderContainer = ({ dropdown, setDropdown }) => {
-  const { token, genres, genre, viewer, episode } = useSelector((state) => ({
-    token: state?.userReducer.token,
-    genres: state?.webtoonReducer.genres,
-    genre: state?.webtoonReducer.genre,
-    viewer: state?.webtoonReducer.viewer,
-    episode: state?.webtoonReducer.episode,
-  }));
+  const { token, genres, genre, viewer, episode, user } = useSelector(
+    (state) => ({
+      token: state?.userReducer.token,
+      user: state?.userReducer.user,
+      genres: state?.webtoonReducer.genres,
+      genre: state?.webtoonReducer.genre,
+      viewer: state?.webtoonReducer.viewer,
+      episode: state?.webtoonReducer.episode,
+    }),
+  );
 
   const dispatch = useDispatch();
 
@@ -41,6 +44,7 @@ export const HeaderContainer = ({ dropdown, setDropdown }) => {
       episode={episode}
       onSetEpisode={onSetEpisode}
       onSetViewer={onSetViewer}
+      user={user}
     />
   );
 };

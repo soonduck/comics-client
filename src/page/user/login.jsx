@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import api from '../../lib/api';
 import Cookies from 'universal-cookie/lib';
 import { Link, useHistory } from 'react-router-dom';
+import { login } from '../../redux/user/user.action';
 
 export const Login = ({ onLogin, token }) => {
   // states
@@ -16,10 +17,10 @@ export const Login = ({ onLogin, token }) => {
   const onClick = () => {
     api.post('user/login', loginInput).then((res) => {
       const cookies = new Cookies();
-      onLogin({ token: cookies.get('x-jwt') });
+      onLogin(cookies.get('x-jwt'));
+      if (cookies.get('x-jwt')) history.push('/');
       if (!res.data.ok) setLoginFail(true);
     });
-    if (token) history.push('/');
   };
 
   return (

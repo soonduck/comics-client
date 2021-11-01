@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie/lib';
 import history from '../../lib/history';
 
-export const InfoMenu = ({ onLogout }) => {
+export const InfoMenu = ({ onLogout, user }) => {
   const logout = () => {
     onLogout();
     const cookies = new Cookies();
@@ -15,7 +15,7 @@ export const InfoMenu = ({ onLogout }) => {
         <li className="item-dropdown info-coin">
           <span className="title-coin">보유 코인</span>
           <span>
-            <span className="bold">1320 </span>
+            <span className="bold">{user.coin} </span>
             Coin
           </span>
           <Link to={'/charge'}>코인충전</Link>

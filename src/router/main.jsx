@@ -12,14 +12,31 @@ import { InfoContainer } from '../container/user/info.container';
 import { ChargeCoin } from '../page/user/charge-coin';
 import { Info } from '../page/user/info';
 import { useEffect } from 'react';
-import history from '../lib/history';
+import { useDispatch } from 'react-redux';
+import { login, myInfo } from '../redux/user/user.action';
+import Cookies from 'universal-cookie/lib';
+import api from '../lib/api';
+import { EditMyInfo } from '../page/user/edit-my-info';
 
 export const Main = ({ setDropdown }) => {
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
   const mainClass = constants.mainClass[pathname];
+  const dispatch = useDispatch();
+  const onLogin = (token) => dispatch(login(token));
+  const onMyInfo = (user) => dispatch(myInfo(user));
 
   useEffect(() => {
+    const cookies = new Cookies();
+
+    try {
+      api.get('user/my-info').then((res) => {
+        onLogin(cookies.get('x-jwt') || '');
+        onMyInfo(res.data);
+      });
+    } catch (error) {
+      cookies.remove('x-jwt');
+    }
     setDropdown(false);
   }, [pathname]);
 
@@ -27,14 +44,15 @@ export const Main = ({ setDropdown }) => {
     <main className={mainClass ? mainClass : pathname ? '' : 'main-index'}>
       <Switch>
         <Route path="/" exact component={Index} />
-        <Route path="/login" component={LoginContainer} />
+        <Route path="/login" exact component={LoginContainer} />
         <Route path="/join" exact component={Join} />
-        <Route path="/join-success" component={JoinSuccess} />
-        <Route path="/charge" component={ChargeCoin} />
-        <Route path="/webtoon-info" component={InfoContainer} />
-        <Route path="/my-info" component={Info} />
-        <Route path="/webtoon/:id" component={WebtoonContainer} />
-        <Route path="/view/episode/:id" component={ViewerContainer} />
+        <Route path="/join-success" exact component={JoinSuccess} />
+        <Route path="/charge" exact component={ChargeCoin} />
+        <Route path="/webtoon-info" exact component={InfoContainer} />
+        <Route path="/my-info" exact component={Info} />
+        <Route path="/edit-my-info" exact component={EditMyInfo} />
+        <Route path="/webtoon/:id" exact component={WebtoonContainer} />
+        <Route path="/view/episode/:id" exact component={ViewerContainer} />
       </Switch>
       <Footer />
     </main>

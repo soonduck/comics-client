@@ -19,6 +19,7 @@ export const Header = ({
   episode,
   onSetEpisode,
   webtoonName,
+  user,
 }) => {
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
@@ -87,7 +88,7 @@ export const Header = ({
                 >
                   <i className="fa-solid fa-user" />
                 </button>
-                {dropdown ? <InfoMenu onLogout={onLogout} /> : ''}
+                {dropdown ? <InfoMenu user={user} onLogout={onLogout} /> : ''}
               </>
             ) : (
               <>
