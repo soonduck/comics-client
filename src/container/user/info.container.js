@@ -1,5 +1,5 @@
-import { Info } from '../../page/user/info';
+import { WebtoonInfo } from '../../page/user/webtoon-info';
 
 export const InfoContainer = () => {
-  return <Info />;
+  return <WebtoonInfo />;
 };

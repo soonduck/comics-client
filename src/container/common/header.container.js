@@ -8,7 +8,7 @@ import {
   setViewer,
 } from '../../redux/webtoon/webtoon.action';
 
-export const HeaderContainer = () => {
+export const HeaderContainer = ({ dropdown, setDropdown }) => {
   const { token, genres, genre, viewer, episode } = useSelector((state) => ({
     token: state?.userReducer.token,
     genres: state?.webtoonReducer.genres,
@@ -29,6 +29,8 @@ export const HeaderContainer = () => {
 
   return (
     <Header
+      dropdown={dropdown}
+      setDropdown={setDropdown}
       token={token}
       onLogout={onLogout}
       genres={genres}

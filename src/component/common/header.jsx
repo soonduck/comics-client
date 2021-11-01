@@ -1,10 +1,13 @@
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
-import Cookies from 'universal-cookie/lib';
+import { useEffect, useState } from 'react';
 import api from '../../lib/api';
 import { ViewerHeader } from '../webtoon/viewer-header';
+import history from '../../lib/history';
+import { InfoMenu } from '../modal/info-menu';
 
 export const Header = ({
+  dropdown,
+  setDropdown,
   token,
   onLogout,
   genres,
@@ -17,22 +20,12 @@ export const Header = ({
   onSetEpisode,
   webtoonName,
 }) => {
-  const [dropdown, setDropdown] = useState(false);
-
-  const history = useHistory();
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
 
   const toLogin = () => {
     if (token) return;
     history.push('/login');
-  };
-
-  const logout = () => {
-    onLogout();
-    const cookies = new Cookies();
-    cookies.remove('x-jwt');
-    console.log(token, cookies.get('x-jwt'));
   };
 
   const clickDropdown = () => {
@@ -67,7 +60,12 @@ export const Header = ({
       <div className="header-wrap">
         <section className="top-header">
           <h1 className="logo-title">
-            <button type="button" onClick={() => history.push('/')}>
+            <button
+              type="button"
+              onClick={() => {
+                pathname ? history.push('/') : document.location.reload();
+              }}
+            >
               soonduck-page
             </button>
           </h1>
@@ -89,33 +87,10 @@ export const Header = ({
                 >
                   <i className="fa-solid fa-user" />
                 </button>
-                <ul
-                  className={'list-dropdown' + (dropdown ? '' : ' a11yHidden')}
-                >
-                  <li className="item-dropdown info-coin">
-                    <span className="title-coin">보유 코인</span>
-                    <span>
-                      <span className="bold">1320 </span>
-                      Coin
-                    </span>
-                    <Link to={'/'}>코인충전</Link>
-                  </li>
-                  <li className="item-dropdown">
-                    <Link to={'/info'}>개인정보</Link>
-                  </li>
-                  <li className="item-dropdown">
-                    <Link to={'/'}>작품정보</Link>
-                  </li>
-                  <li className="item-dropdown last-dropdown">
-                    <button type="button" onClick={logout}>
-                      로그아웃
-                    </button>
-                  </li>
-                </ul>
+                {dropdown ? <InfoMenu onLogout={onLogout} /> : ''}
               </>
             ) : (
               <>
-                {' '}
                 <button onClick={toLogin}>Login</button>
                 <button>Guest Login</button>
               </>
