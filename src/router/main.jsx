@@ -12,6 +12,7 @@ import { InfoContainer } from '../container/user/info.container';
 import { ChargeCoin } from '../page/user/charge-coin';
 import { Info } from '../page/user/info';
 import { useEffect } from 'react';
+import history from '../lib/history';
 
 export const Main = ({ setDropdown }) => {
   const location = useLocation();

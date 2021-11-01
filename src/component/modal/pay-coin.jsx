@@ -26,6 +26,11 @@ export const PayCoin = ({ setPay, viewer, pay, onSetEpisode }) => {
           history.push(
             '/view/episode/' + pay.orderNum + '?webtoonId=' + webtoonId,
           );
+        } else if (
+          typeof res.data.error === 'string' &&
+          res.data.error.includes('결제')
+        ) {
+          history.push('/charge');
         }
       });
     // 1. 결제 get 요청

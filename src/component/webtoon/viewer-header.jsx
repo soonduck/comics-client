@@ -36,21 +36,23 @@ export const ViewerHeader = ({ episode, onSetEpisode }) => {
       )
       .then((res) => {
         if (res.data.episode && !res.data.episode.pay) {
-          onSetEpisode(res.data.episode);
+          // onSetEpisode(res.data.episode);
           history.push(
             '/view/episode/' +
               res.data.episode.orderNum +
               '?webtoonId=' +
               webtoonId,
           );
+          document.location.reload();
         } else if (res.data.episode) {
-          onSetEpisode(res.data.episode);
+          // onSetEpisode(res.data.episode);
           history.push(
             '/view/episode/' +
               res.data.episode.orderNum +
               '?webtoonId=' +
               webtoonId,
           );
+          document.location.reload();
         } else if (res.data.error.includes('지불')) {
           setPay({ ok: true, orderNum: episode.orderNum + count });
         } else if (res.data.error.includes('로그인')) {
