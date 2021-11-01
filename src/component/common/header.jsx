@@ -101,7 +101,7 @@ export const Header = ({
                     <Link to={'/'}>코인충전</Link>
                   </li>
                   <li className="item-dropdown">
-                    <Link to={'/'}>개인정보</Link>
+                    <Link to={'/info'}>개인정보</Link>
                   </li>
                   <li className="item-dropdown">
                     <Link to={'/'}>작품정보</Link>

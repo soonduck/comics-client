@@ -8,6 +8,7 @@ import { Index } from '../page';
 import { WebtoonContainer } from '../container/webtoon/webtoon.container';
 import constants from '../lib/constants';
 import { ViewerContainer } from '../container/webtoon/viewer.container';
+import { InfoContainer } from '../container/user/info.container';
 
 export const Main = () => {
   const location = useLocation();
@@ -21,6 +22,7 @@ export const Main = () => {
         <Route path="/login" component={LoginContainer} />
         <Route path="/join" exact component={Join} />
         <Route path="/join-success" component={JoinSuccess} />
+        <Route path="/info" component={InfoContainer} />
         <Route path="/webtoon/:id" component={WebtoonContainer} />
         <Route path="/view/episode/:id" component={ViewerContainer} />
       </Switch>
