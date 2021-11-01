@@ -92,9 +92,20 @@ export const ViewerHeader = ({ episode, onSetEpisode }) => {
         </div>
         <div className="controllers">
           <button className="btn-home">
-            <i className="fas fa-home" />홈
+            <i
+              className="fas fa-home"
+              onClick={() => {
+                history.push('/');
+              }}
+            />
+            홈
           </button>
-          <button className="btn-list">
+          <button
+            className="btn-list"
+            onClick={() => {
+              history.push('/webtoon/' + webtoonId);
+            }}
+          >
             <i className="fa-solid fa-bars" />
             목록
           </button>

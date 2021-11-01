@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 export const Login = ({ onLogin, token }) => {
   // states
   const [loginInput, setLoginInput] = useState({ userId: '', password: '' });
+  const [loginFail, setLoginFail] = useState(false);
 
   //variables
   const history = useHistory();
@@ -16,8 +17,9 @@ export const Login = ({ onLogin, token }) => {
     api.post('user/login', loginInput).then((res) => {
       const cookies = new Cookies();
       onLogin({ token: cookies.get('x-jwt') });
+      if (!res.data.ok) setLoginFail(true);
     });
-    history.push('/');
+    if (token) history.push('/');
   };
 
   return (
@@ -36,10 +38,13 @@ export const Login = ({ onLogin, token }) => {
           setLoginInput({ ...loginInput, password: target.value })
         }
       />
-      <Link to="/join">아직 회원이 아니신가요?</Link>
-      <button type="button" onClick={onClick}>
-        로그인
-      </button>
+      {loginFail ? <div>로그인에 실패했습니다</div> : ''}
+      <div>
+        <Link to="/join">아직 회원이 아니신가요?</Link>
+        <button type="button" onClick={onClick}>
+          로그인
+        </button>
+      </div>
     </form>
   );
 };

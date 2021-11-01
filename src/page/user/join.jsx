@@ -1,8 +1,7 @@
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import api from '../../lib/api';
 import { useState } from 'react';
-import { Error } from '../../component/common/error';
 
 export const Join = () => {
   const [joinInput, setJoinInput] = useState({
@@ -15,6 +14,7 @@ export const Join = () => {
   const { token } = useSelector((state) => ({
     token: state?.userReducer.token,
   }));
+
   const history = useHistory();
   if (token) history.push('/');
 

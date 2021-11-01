@@ -5,8 +5,6 @@ import {
   SET_EPISODE,
   SET_GENRE,
   SET_GENRES,
-  SET_PAGE,
-  SET_TOTAL_PAGE,
   SET_VIEWER,
   SET_WEBTOON,
 } from './webtoon.type';
@@ -35,11 +33,6 @@ export default function webtoonReducer(state = initialState, action) {
       return { ...state, genres: action.payload.genres };
     case SET_GENRE:
       return { ...state, genre: action.payload.genre };
-
-    case SET_PAGE:
-      return { ...state, page: action.payload.page };
-    case SET_TOTAL_PAGE:
-      return { ...state, totalPage: action.payload.totalPage };
 
     case SET_CATEGORIES:
       return { ...state, categories: action.payload.categories };

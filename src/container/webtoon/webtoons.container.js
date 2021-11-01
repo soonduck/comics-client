@@ -4,8 +4,6 @@ import {
   setActiveCategories,
   setCategories,
   setMainWebtoons,
-  setPage,
-  setTotalPage,
 } from '../../redux/webtoon/webtoon.action';
 import { Categories } from '../../component/webtoon/categories';
 
@@ -14,7 +12,6 @@ export const WebtoonsContainer = () => {
     useSelector((state) => ({
       mainWebtoons: state?.webtoonReducer.mainWebtoons,
       genre: state?.webtoonReducer.genre,
-      page: state?.webtoonReducer.page,
       totalPage: state?.webtoonReducer.totalPage,
       categories: state?.webtoonReducer.categories,
       activeCategories: state?.webtoonReducer.activeCategories,
@@ -23,8 +20,6 @@ export const WebtoonsContainer = () => {
 
   // dispatch for webtoons component
   const onSetMainWebtoons = (webtoons) => dispatch(setMainWebtoons(webtoons));
-  const onSetTotalPage = (totalPage) => dispatch(setTotalPage(totalPage));
-  const onSetPage = (page) => dispatch(setPage(page));
 
   // dispatch for categories component
   const onSetCategories = (categories) => dispatch(setCategories(categories));
@@ -44,10 +39,7 @@ export const WebtoonsContainer = () => {
         mainWebtoons={mainWebtoons}
         onSetMainWebtoons={onSetMainWebtoons}
         genre={genre}
-        page={page}
-        onSetPage={onSetPage}
         totalPage={totalPage}
-        onSetTotalPage={onSetTotalPage}
       />
     </>
   );

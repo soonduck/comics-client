@@ -4,6 +4,7 @@ import { PayCoin } from '../../component/modal/pay-coin';
 import { NeedLogin } from '../../component/modal/need-login';
 import { View } from '../../component/webtoon/view';
 import { Comments } from '../../component/comment/comments';
+import { WriteComment } from '../../component/comment/write-comment';
 
 export const Viewer = ({
   orderNum,
@@ -58,6 +59,7 @@ export const Viewer = ({
       {pay ? <PayCoin setPay={setPay} viewer={true} /> : ''}
       {login ? <NeedLogin setLogin={setLogin} viewer={true} /> : ''}
       <View episode={episode} />
+      <WriteComment episode={episode} />
       <Comments data={orderNum} />
     </>
   );

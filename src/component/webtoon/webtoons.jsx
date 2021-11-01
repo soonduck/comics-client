@@ -1,14 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import api from '../../lib/api';
 import { ItemWebtoon } from './item-webtoon';
 
-export const Webtoons = ({
-  mainWebtoons,
-  onSetMainWebtoons,
-  genre,
-  page,
-  totalPage,
-}) => {
+export const Webtoons = ({ mainWebtoons, onSetMainWebtoons, genre }) => {
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     api.get('webtoon?genre=' + genre + '&page=' + page).then((res) => {
       onSetMainWebtoons(res.data['webtoons']);

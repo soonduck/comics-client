@@ -8,7 +8,7 @@ export const LoginContainer = () => {
   }));
   const dispatch = useDispatch();
 
-  const onLogin = (user, token) => dispatch(login(user, token));
+  const onLogin = ({ token }) => dispatch(login(token));
 
   return <Login onLogin={onLogin} token={token} />;
 };
