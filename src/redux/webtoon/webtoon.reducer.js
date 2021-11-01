@@ -5,10 +5,11 @@ import {
   SET_EPISODE,
   SET_GENRE,
   SET_GENRES,
+  SET_MY_VIEW_RECORDS,
+  SET_MY_WEBTOONS,
   SET_VIEWER,
   SET_WEBTOON,
 } from './webtoon.type';
-import { createStore } from 'redux';
 
 const initialState = {
   mainWebtoons: [],
@@ -23,6 +24,8 @@ const initialState = {
   episodes: [],
   episode: {},
   viewer: false,
+  myWebtoons: [],
+  myViewRecords: [],
 };
 export default function webtoonReducer(state = initialState, action) {
   switch (action.type) {
@@ -50,6 +53,12 @@ export default function webtoonReducer(state = initialState, action) {
 
     case SET_VIEWER:
       return { ...state, viewer: action.payload.viewer };
+
+    case SET_MY_WEBTOONS:
+      return { ...state, myWebtoons: action.payload.myWebtoons };
+    case SET_MY_VIEW_RECORDS:
+      return { ...state, myViewRecords: action.payload.myViewRecords };
+
     default:
       return state;
   }

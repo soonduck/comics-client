@@ -1,20 +1,23 @@
-export const MyWebtoons = () => {
+import { ItemEpisode } from '../webtoon/item-episode';
+import { useEffect } from 'react';
+import api from '../../lib/api';
+import { ItemWebtoon } from '../webtoon/item-webtoon';
+import { ItemMyWebtoon } from '../webtoon/item-myWebtoon';
+
+export const MyWebtoons = ({ onSetMyWebtoons, myWebtoons }) => {
+  useEffect(() => {
+    api.get('webtoon/get/my-webtoons').then((res) => {
+      onSetMyWebtoons(
+        res.data.myWebtoons.sort((a, b) => a.updatedAt - b.updatedAt),
+      );
+    });
+  }, []);
   return (
     <div className="my-webtoon-list">
       <ul className="list-my-webtoon">
-        <li className="item-my-webtoon">
-          <button>
-            <img
-              src="../../img/thumbnails/1.png"
-              alt=""
-              className="thumbnail-episode"
-            />
-          </button>
-          <span className="episode-info">
-            <span className="episode-title">friends with benefits</span>
-            <span className="episode-date">2021.10.27</span>
-          </span>
-        </li>
+        {myWebtoons.map(({ name, thumbnailUrl, id }) => (
+          <ItemMyWebtoon name={name} url={thumbnailUrl} key={id} id={id} />
+        ))}
       </ul>
     </div>
   );

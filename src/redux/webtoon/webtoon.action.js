@@ -5,6 +5,8 @@ import {
   SET_EPISODE,
   SET_GENRE,
   SET_GENRES,
+  SET_MY_VIEW_RECORDS,
+  SET_MY_WEBTOONS,
   SET_VIEWER,
   SET_WEBTOON,
 } from './webtoon.type';
@@ -42,4 +44,14 @@ export const setEpisode = (episode) => ({
 export const setViewer = (boolean) => ({
   type: SET_VIEWER,
   payload: { viewer: boolean },
+});
+
+// 내 작품정보
+export const setMyWebtoons = (myWebtoons) => ({
+  type: SET_MY_WEBTOONS,
+  payload: { myWebtoons },
+});
+export const setMyViewRecords = (myViewRecords) => ({
+  type: SET_MY_VIEW_RECORDS,
+  payload: { myViewRecords },
 });
