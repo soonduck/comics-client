@@ -10,12 +10,17 @@ import api from './lib/api';
 
 function App() {
   const [dropdown, setDropdown] = useState(false);
-
+  const [selectedGenre, setSelectedGenre] = useState(1);
   return (
     <>
       <Router history={history}>
-        <HeaderContainer dropdown={dropdown} setDropdown={setDropdown} />
-        <Main setDropdown={setDropdown} />
+        <HeaderContainer
+          setSelectedGenre={setSelectedGenre}
+          selectedGenre={selectedGenre}
+          dropdown={dropdown}
+          setDropdown={setDropdown}
+        />
+        <Main setDropdown={setDropdown} selectedGenre={selectedGenre} />
       </Router>
     </>
   );

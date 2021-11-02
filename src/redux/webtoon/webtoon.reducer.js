@@ -3,7 +3,6 @@ import {
   SET_ACTIVE_CATEGORIES,
   SET_CATEGORIES,
   SET_EPISODE,
-  SET_GENRE,
   SET_GENRES,
   SET_MY_VIEW_RECORDS,
   SET_MY_WEBTOONS,
@@ -17,7 +16,6 @@ const initialState = {
   categories: [],
   activeCategories: {},
   genres: [],
-  genre: 1,
   page: 1,
   totalPage: 1,
   webtoon: {},
@@ -34,8 +32,6 @@ export default function webtoonReducer(state = initialState, action) {
 
     case SET_GENRES:
       return { ...state, genres: action.payload.genres };
-    case SET_GENRE:
-      return { ...state, genre: action.payload.genre };
 
     case SET_CATEGORIES:
       return { ...state, categories: action.payload.categories };

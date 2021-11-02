@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom';
 import api from '../../lib/api';
+import history from '../../lib/history';
 
 export const ItemEpisode = ({
   id,
@@ -13,8 +14,6 @@ export const ItemEpisode = ({
   setLogin,
   webtoon,
 }) => {
-  const history = useHistory();
-
   const onClickEpisode = () => {
     api
       .get('webtoon/view/episode/' + orderNum + '?webtoonId=' + webtoon.id)

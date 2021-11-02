@@ -7,15 +7,14 @@ import {
 } from '../../redux/webtoon/webtoon.action';
 import { Categories } from '../../component/webtoon/categories';
 
-export const WebtoonsContainer = () => {
-  const { mainWebtoons, genre, page, totalPage, categories, activeCategories } =
-    useSelector((state) => ({
+export const WebtoonsContainer = ({ selectedGenre }) => {
+  const { mainWebtoons, categories, activeCategories } = useSelector(
+    (state) => ({
       mainWebtoons: state?.webtoonReducer.mainWebtoons,
-      genre: state?.webtoonReducer.genre,
-      totalPage: state?.webtoonReducer.totalPage,
       categories: state?.webtoonReducer.categories,
       activeCategories: state?.webtoonReducer.activeCategories,
-    }));
+    }),
+  );
   const dispatch = useDispatch();
 
   // dispatch for webtoons component
@@ -29,17 +28,16 @@ export const WebtoonsContainer = () => {
   return (
     <>
       <Categories
+        selectedGenre={selectedGenre}
         categories={categories}
         activeCategories={activeCategories}
         onSetCategories={onSetCategories}
         onSetActiveCategories={onSetActiveCategories}
-        genre={genre}
       />
       <Webtoons
+        selectedGenre={selectedGenre}
         mainWebtoons={mainWebtoons}
         onSetMainWebtoons={onSetMainWebtoons}
-        genre={genre}
-        totalPage={totalPage}
       />
     </>
   );

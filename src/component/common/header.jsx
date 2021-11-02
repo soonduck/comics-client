@@ -12,13 +12,13 @@ export const Header = ({
   onLogout,
   genres,
   onSetGenres,
-  genre,
-  onSetGenre,
   viewer,
   onSetViewer,
   episode,
   onSetEpisode,
   webtoonName,
+  selectedGenre,
+  setSelectedGenre,
   user,
 }) => {
   const location = useLocation();
@@ -108,10 +108,11 @@ export const Header = ({
                   <li
                     key={id}
                     className={
-                      'item-genre' + (genre === id ? ' genre-active' : '')
+                      'item-genre' +
+                      (selectedGenre === id ? ' genre-active' : '')
                     }
                   >
-                    <button onClick={() => onSetGenre(id)}>{name}</button>
+                    <button onClick={() => setSelectedGenre(id)}>{name}</button>
                   </li>
                 ))
               ) : (

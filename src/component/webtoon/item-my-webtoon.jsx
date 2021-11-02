@@ -1,5 +1,9 @@
+import history from '../../lib/history';
+
 export const ItemMyWebtoon = ({ id, url, name }) => {
-  const onClickWebtoon = () => {};
+  const onClickWebtoon = () => {
+    history.push('/my-webtoon/' + id);
+  };
   return (
     <li className="item-webtoon" key={id}>
       <button onClick={onClickWebtoon} type="button">

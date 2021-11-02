@@ -20,10 +20,6 @@ export const setGenres = (genres) => ({
   type: SET_GENRES,
   payload: { genres },
 });
-export const setGenre = (genre) => ({
-  type: SET_GENRE,
-  payload: { genre },
-});
 
 export const setCategories = (categories) => ({
   type: SET_CATEGORIES,

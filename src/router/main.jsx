@@ -19,8 +19,9 @@ import api from '../lib/api';
 import { EditMyInfo } from '../page/user/edit-my-info';
 import { RegisterContainer } from '../container/webtoon/register.container';
 import { MyWebtoon } from '../page/webtoon/my-webtoon';
+import { UploadEpisode } from '../page/webtoon/upload-episode';
 
-export const Main = ({ setDropdown }) => {
+export const Main = ({ setDropdown, selectedGenre }) => {
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
   const mainClass = constants.mainClass[pathname];
@@ -45,7 +46,11 @@ export const Main = ({ setDropdown }) => {
   return (
     <main className={mainClass ? mainClass : pathname ? '' : 'main-index'}>
       <Switch>
-        <Route path="/" exact component={Index} />
+        <Route
+          path="/"
+          exact
+          component={() => <Index selectedGenre={selectedGenre} />}
+        />
         <Route path="/login" exact component={LoginContainer} />
         <Route path="/join" exact component={Join} />
         <Route path="/join-success" exact component={JoinSuccess} />
@@ -54,6 +59,7 @@ export const Main = ({ setDropdown }) => {
         <Route path="/my-info" exact component={Info} />
         <Route path="/edit-my-info" exact component={EditMyInfo} />
         <Route path="/webtoon/register" exact component={RegisterContainer} />
+        <Route path="/webtoon/upload-episode" exact component={UploadEpisode} />
         <Route path="/webtoon/:id" exact component={WebtoonContainer} />
         <Route path="/my-webtoon/:id" exact component={MyWebtoon} />
         <Route path="/view/episode/:id" exact component={ViewerContainer} />

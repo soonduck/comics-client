@@ -2,14 +2,18 @@ import { useEffect, useState } from 'react';
 import api from '../../lib/api';
 import { ItemWebtoon } from './item-webtoon';
 
-export const Webtoons = ({ mainWebtoons, onSetMainWebtoons, genre }) => {
+export const Webtoons = ({
+  mainWebtoons,
+  onSetMainWebtoons,
+  selectedGenre,
+}) => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    api.get('webtoon?genre=' + genre + '&page=' + page).then((res) => {
+    api.get('webtoon?genre=' + selectedGenre + '&page=' + page).then((res) => {
       onSetMainWebtoons(res.data['webtoons']);
     });
-  }, [genre]);
+  }, [selectedGenre]);
 
   return (
     <div className="bottom wrap">

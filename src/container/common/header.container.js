@@ -3,12 +3,16 @@ import { logout } from '../../redux/user/user.action';
 import { Header } from '../../component/common/header';
 import {
   setEpisode,
-  setGenre,
   setGenres,
   setViewer,
 } from '../../redux/webtoon/webtoon.action';
 
-export const HeaderContainer = ({ dropdown, setDropdown }) => {
+export const HeaderContainer = ({
+  dropdown,
+  setDropdown,
+  selectedGenre,
+  setSelectedGenre,
+}) => {
   const { token, genres, genre, viewer, episode, user } = useSelector(
     (state) => ({
       token: state?.userReducer.token,
@@ -24,7 +28,6 @@ export const HeaderContainer = ({ dropdown, setDropdown }) => {
 
   const onLogout = () => dispatch(logout());
   const onSetGenres = (genres) => dispatch(setGenres(genres));
-  const onSetGenre = (genre) => dispatch(setGenre(genre));
 
   const onSetEpisode = (episode) => dispatch(setEpisode(episode));
 
@@ -32,6 +35,8 @@ export const HeaderContainer = ({ dropdown, setDropdown }) => {
 
   return (
     <Header
+      setSelectedGenre={setSelectedGenre}
+      selectedGenre={selectedGenre}
       dropdown={dropdown}
       setDropdown={setDropdown}
       token={token}
@@ -39,7 +44,6 @@ export const HeaderContainer = ({ dropdown, setDropdown }) => {
       genres={genres}
       onSetGenres={onSetGenres}
       genre={genre}
-      onSetGenre={onSetGenre}
       viewer={viewer}
       episode={episode}
       onSetEpisode={onSetEpisode}

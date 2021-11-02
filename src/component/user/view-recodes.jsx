@@ -7,7 +7,6 @@ export const ViewRecodes = ({ myViewRecords, onSetMyViewRecords }) => {
     api.get('webtoon/get/my-view-record').then((res) => {
       console.log(res);
       onSetMyViewRecords(res.data.viewRecords);
-      console.log(res.data.viewRecords[0].thumbnailUrl);
     });
   }, []);
 

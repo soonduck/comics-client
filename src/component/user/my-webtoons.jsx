@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import api from '../../lib/api';
-import { ItemMyWebtoon } from '../webtoon/item-myWebtoon';
+import { ItemMyWebtoon } from '../webtoon/item-my-webtoon';
 
 export const MyWebtoons = ({ onSetMyWebtoons, myWebtoons }) => {
   useEffect(() => {

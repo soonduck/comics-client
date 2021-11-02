@@ -6,10 +6,10 @@ export const Categories = ({
   activeCategories,
   onSetCategories,
   onSetActiveCategories,
-  genre,
+  selectedGenre,
 }) => {
   useEffect(() => {
-    api.get('webtoon/categories/' + genre).then((res) => {
+    api.get('webtoon/categories/' + selectedGenre).then((res) => {
       onSetCategories(res.data);
       const tempActive = {};
       for (let i = 0; i < res.data.length; i++) {
@@ -17,7 +17,7 @@ export const Categories = ({
       }
       onSetActiveCategories(tempActive);
     });
-  }, [genre]);
+  }, [selectedGenre]);
   const addActiveCategories = (id) => {
     onSetActiveCategories({ ...activeCategories, [id]: !activeCategories[id] });
   };

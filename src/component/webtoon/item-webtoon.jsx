@@ -1,8 +1,7 @@
-import { useHistory } from 'react-router-dom';
+import history from '../../lib/history';
 
 export const ItemWebtoon = ({ id, url, title }) => {
   // functions
-  const history = useHistory();
 
   const onClickWebtoon = (id) => {
     history.push('webtoon/' + id);
