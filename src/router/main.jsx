@@ -59,7 +59,11 @@ export const Main = ({ setDropdown, selectedGenre }) => {
         <Route path="/my-info" exact component={Info} />
         <Route path="/edit-my-info" exact component={EditMyInfo} />
         <Route path="/webtoon/register" exact component={RegisterContainer} />
-        <Route path="/webtoon/upload-episode" exact component={UploadEpisode} />
+        <Route
+          path="/webtoon/upload-episode/:webtoonId"
+          exact
+          component={UploadEpisode}
+        />
         <Route path="/webtoon/:id" exact component={WebtoonContainer} />
         <Route path="/my-webtoon/:id" exact component={MyWebtoon} />
         <Route path="/view/episode/:id" exact component={ViewerContainer} />

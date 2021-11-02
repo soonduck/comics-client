@@ -20,7 +20,7 @@ export const MyWebtoon = () => {
   const pathname = location.pathname.split('/')[2];
 
   const uploadEpisode = () => {
-    history.push('/webtoon/upload-episode');
+    history.push('/webtoon/upload-episode/' + pathname);
   };
 
   useEffect(() => {
