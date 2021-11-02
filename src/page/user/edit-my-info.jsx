@@ -10,18 +10,47 @@ export const EditMyInfo = () => {
   const [pic, setPic] = useState();
   const [username, setUsername] = useState('');
   const [upload, setUpload] = useState();
+  const [oversize, setOversize] = useState(false);
+
+  // 3MB 사이즈
+  const maxSize = 3 * 1024 * 1024;
+  // 프로필 사진은 작아도 될듯...
+  // 이유: 서버에서 용량 줄이기 아직 할 줄 모른다!!!
 
   const onChangeUsername = ({ target }) => {
     setUsername(target.value);
   };
 
   const editMyInfo = () => {
-    const formData = new FormData();
-    formData.append('file', upload);
+    if (upload) {
+      const formData = new FormData();
+      formData.append('file', upload);
 
-    api.post('user/picUpload', formData).then((res) => {
+      api.post('user/picUpload', formData).then((res) => {
+        console.log(res);
+      });
+    }
+    api.post('user/edit-info', { username }).then((res) => {
       console.log(res);
     });
+  };
+
+  const setPreview = (event) => {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      setPic(event.target.result);
+    };
+    if (event.target.files[0] && event.target.files[0].size < maxSize) {
+      reader.readAsDataURL(event.target.files[0]);
+      setUpload(event.target.files[0]);
+    } else if (event.target.files[0] && event.target.files[0].size > maxSize) {
+      setOversize(true);
+      setPic('');
+      setUpload('');
+    } else if (!event.target.files[0]) {
+      setPic('');
+      setUpload('');
+    }
   };
 
   useEffect(() => {
@@ -35,6 +64,13 @@ export const EditMyInfo = () => {
         <div id="image_container">
           <img src={pic} alt="" />
         </div>
+        {oversize ? (
+          <div className="notice-oversize">
+            파일용량은 5MB를 넘을 수 없습니다.
+          </div>
+        ) : (
+          ''
+        )}
         <label htmlFor="setMyProfilePic">
           <i className="fa-solid fa-camera-retro"></i>
         </label>
@@ -42,15 +78,7 @@ export const EditMyInfo = () => {
           type="file"
           className="a11yHidden"
           id="setMyProfilePic"
-          onChange={(event) => {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-              setPic(event.target.result);
-            };
-            setUpload(event.target.files[0]);
-            if (event.target.files[0])
-              reader.readAsDataURL(event.target.files[0]);
-          }}
+          onChange={setPreview}
         />
         <div className="input-nickname-desc">
           <span>닉네임을 입력해주세요.</span>
@@ -68,7 +96,11 @@ export const EditMyInfo = () => {
             <i className="fa-solid fa-circle-xmark"></i>
           </button>
         </label>
-        <button type="button" onClick={editMyInfo}>
+        <button
+          type="button"
+          disabled={username === user.username && !upload}
+          onClick={editMyInfo}
+        >
           저장
         </button>
       </form>

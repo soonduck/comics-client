@@ -6,9 +6,6 @@ export const Info = () => {
     user: state?.userReducer.user,
   }));
 
-  // 5MB 사이즈
-  const maxSize = 5 * 1024 * 1024;
-
   const disableAccount = () => {};
   return (
     <section className="wrap">
