@@ -41,6 +41,7 @@ export const EditMyInfo = () => {
       setPic(event.target.result);
     };
     if (event.target.files[0] && event.target.files[0].size < maxSize) {
+      setOversize(false);
       reader.readAsDataURL(event.target.files[0]);
       setUpload(event.target.files[0]);
     } else if (event.target.files[0] && event.target.files[0].size > maxSize) {
@@ -48,6 +49,7 @@ export const EditMyInfo = () => {
       setPic('');
       setUpload('');
     } else if (!event.target.files[0]) {
+      setOversize(false);
       setPic('');
       setUpload('');
     }
