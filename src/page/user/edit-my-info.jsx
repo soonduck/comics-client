@@ -63,17 +63,10 @@ export const EditMyInfo = () => {
     <section className="wrap">
       <h2>프로필 설정</h2>
       <form>
-        <div id="image_container">
-          <img src={pic} alt="" />
-        </div>
-        {oversize ? (
-          <div className="notice-oversize">
-            파일용량은 5MB를 넘을 수 없습니다.
-          </div>
-        ) : (
-          ''
-        )}
         <label htmlFor="setMyProfilePic">
+          <div id="image_container">
+            <img src={pic} alt="" />
+          </div>
           <i className="fa-solid fa-camera-retro"></i>
         </label>
         <input
@@ -81,7 +74,15 @@ export const EditMyInfo = () => {
           className="a11yHidden"
           id="setMyProfilePic"
           onChange={setPreview}
+          accept="image/*"
         />
+        {oversize ? (
+          <div className="notice-oversize">
+            파일용량은 5MB를 넘을 수 없습니다.
+          </div>
+        ) : (
+          ''
+        )}
         <div className="input-nickname-desc">
           <span>닉네임을 입력해주세요.</span>
           <span>{username.length}/16</span>

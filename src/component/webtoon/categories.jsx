@@ -21,27 +21,20 @@ export const Categories = ({
   const addActiveCategories = (id) => {
     onSetActiveCategories({ ...activeCategories, [id]: !activeCategories[id] });
   };
-  return categories.length ? (
+  return (
     <section className="categories wrap">
       <ul className="list-category">
-        {categories ? (
-          categories.map(({ id, name }) => (
-            <li
-              key={id}
-              className={
-                'item-category' +
-                (activeCategories[id] ? ' active-category' : '')
-              }
-            >
-              <button onClick={() => addActiveCategories(id)}>{name}</button>
-            </li>
-          ))
-        ) : (
-          <></>
-        )}
+        {categories.map(({ id, name }) => (
+          <li
+            key={id}
+            className={
+              'item-category' + (activeCategories[id] ? ' active-category' : '')
+            }
+          >
+            <button onClick={() => addActiveCategories(id)}>{name}</button>
+          </li>
+        ))}
       </ul>
     </section>
-  ) : (
-    <></>
   );
 };

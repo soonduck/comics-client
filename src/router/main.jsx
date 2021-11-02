@@ -17,6 +17,7 @@ import { login, myInfo } from '../redux/user/user.action';
 import Cookies from 'universal-cookie/lib';
 import api from '../lib/api';
 import { EditMyInfo } from '../page/user/edit-my-info';
+import { RegisterContainer } from '../container/webtoon/register.container';
 
 export const Main = ({ setDropdown }) => {
   const location = useLocation();
@@ -51,6 +52,7 @@ export const Main = ({ setDropdown }) => {
         <Route path="/webtoon-info" exact component={InfoContainer} />
         <Route path="/my-info" exact component={Info} />
         <Route path="/edit-my-info" exact component={EditMyInfo} />
+        <Route path="/webtoon/register" exact component={RegisterContainer} />
         <Route path="/webtoon/:id" exact component={WebtoonContainer} />
         <Route path="/view/episode/:id" exact component={ViewerContainer} />
       </Switch>
