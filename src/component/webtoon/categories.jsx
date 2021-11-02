@@ -21,7 +21,7 @@ export const Categories = ({
   const addActiveCategories = (id) => {
     onSetActiveCategories({ ...activeCategories, [id]: !activeCategories[id] });
   };
-  return (
+  return categories.length ? (
     <section className="categories wrap">
       <ul className="list-category">
         {categories ? (
@@ -41,5 +41,7 @@ export const Categories = ({
         )}
       </ul>
     </section>
+  ) : (
+    <></>
   );
 };

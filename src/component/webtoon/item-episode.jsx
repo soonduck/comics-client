@@ -24,6 +24,7 @@ export const ItemEpisode = ({
           history.push(
             '/view/episode/' + orderNum + '?webtoonId=' + webtoon.id,
           );
+          document.location.reload();
         } else if (res.data.error.includes('지불')) {
           setPay({ ok: true, orderNum });
         } else if (res.data.error.includes('로그인')) {

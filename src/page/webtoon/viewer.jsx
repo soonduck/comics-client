@@ -69,7 +69,10 @@ export const Viewer = ({
       {pay ? <PayCoin setPay={setPay} viewer={true} /> : ''}
       {login ? <NeedLogin setLogin={setLogin} viewer={true} /> : ''}
       <View episode={episode} episodeComments={episodeComments} />
-      <WriteComment episode={episode} />
+      <WriteComment
+        episode={episode}
+        onSetEpisodeComments={onSetEpisodeComments}
+      />
       <Comments episodeComments={episodeComments} />
     </>
   );

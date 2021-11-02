@@ -1,7 +1,6 @@
 import { ItemComment } from './item-comment';
 
 export const Comments = ({ episodeComments }) => {
-  console.log('comments', episodeComments.comments);
   return (
     <ul>
       {episodeComments.comments

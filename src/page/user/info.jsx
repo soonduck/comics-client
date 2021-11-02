@@ -6,10 +6,16 @@ export const Info = () => {
     user: state?.userReducer.user,
   }));
 
+  // 5MB 사이즈
+  const maxSize = 5 * 1024 * 1024;
+
   const disableAccount = () => {};
   return (
     <section className="wrap">
       <h2>{user.username}님의 계정정보</h2>
+      <div className="container-image">
+        <img src={user.pic} alt="" />
+      </div>
       <div className="wrap-my-info">
         <div className="my-id-info">
           <span>아이디</span>
