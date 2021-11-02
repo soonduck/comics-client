@@ -1,6 +1,6 @@
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { LoginContainer } from '../container/user/login.container';
-import '../scss/main.scss';
+// import '../scss/main.scss';
 import { Footer } from '../component/common/footer';
 import { Join } from '../page/user/join';
 import { JoinSuccess } from '../page/user/join-success';
@@ -18,6 +18,7 @@ import Cookies from 'universal-cookie/lib';
 import api from '../lib/api';
 import { EditMyInfo } from '../page/user/edit-my-info';
 import { RegisterContainer } from '../container/webtoon/register.container';
+import { MyWebtoon } from '../page/webtoon/my-webtoon';
 
 export const Main = ({ setDropdown }) => {
   const location = useLocation();
@@ -54,6 +55,7 @@ export const Main = ({ setDropdown }) => {
         <Route path="/edit-my-info" exact component={EditMyInfo} />
         <Route path="/webtoon/register" exact component={RegisterContainer} />
         <Route path="/webtoon/:id" exact component={WebtoonContainer} />
+        <Route path="/my-webtoon/:id" exact component={MyWebtoon} />
         <Route path="/view/episode/:id" exact component={ViewerContainer} />
       </Switch>
       <Footer />

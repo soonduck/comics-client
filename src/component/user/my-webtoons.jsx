@@ -5,9 +5,7 @@ import { ItemMyWebtoon } from '../webtoon/item-myWebtoon';
 export const MyWebtoons = ({ onSetMyWebtoons, myWebtoons }) => {
   useEffect(() => {
     api.get('webtoon/get/my-webtoons').then((res) => {
-      onSetMyWebtoons(
-        res.data.myWebtoons.sort((a, b) => a.updatedAt - b.updatedAt),
-      );
+      onSetMyWebtoons(res.data.myWebtoons);
     });
   }, []);
   return (

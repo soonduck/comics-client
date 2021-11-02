@@ -1,4 +1,4 @@
-import { Register } from '../../page/user/register';
+import { Register } from '../../page/webtoon/register';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGenres } from '../../redux/webtoon/webtoon.action';
 

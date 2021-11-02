@@ -8,9 +8,9 @@ export const EditMyInfo = () => {
   }));
 
   const [pic, setPic] = useState();
-  const [username, setUsername] = useState('');
   const [upload, setUpload] = useState();
   const [oversize, setOversize] = useState(false);
+  const [username, setUsername] = useState('');
 
   // 3MB 사이즈
   const maxSize = 3 * 1024 * 1024;
