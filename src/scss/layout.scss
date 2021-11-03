@@ -632,11 +632,25 @@ main{
     padding-left: 10px;
   }
   .buttons-submit-webtoon{
-    gap: 10px;
+    button{
+      width: 100px;
+      height: 38px;
+      border-radius: $border-radius-small;
+    }
   }
   ul{
     display: flex;
     gap: 10px;
+  }
+  .list-genre-register{
+    gap: 10px;
+  }
+  .item-genre-register{
+    width: 80px;
+    height: 38px;
+    line-height: 38px;
+    border-radius: $border-radius-small;
+    text-align: center;
   }
   .upload-thumbnail{
     width: 100px;

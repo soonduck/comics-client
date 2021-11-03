@@ -7,19 +7,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setActiveCategories,
   setCategories,
+  setSelectedGenre,
 } from '../../redux/webtoon/webtoon.action';
 
 export const Register = ({ genres, onSetGenres }) => {
-  const { activeCategories, categories } = useSelector((state) => ({
-    activeCategories: state?.webtoonReducer.activeCategories,
-    categories: state?.webtoonReducer.categories,
-  }));
+  // 이거 전부 컨테이너로 옮기는 리팩토링 필요!!!
+  const { activeCategories, categories, selectedGenre } = useSelector(
+    (state) => ({
+      activeCategories: state?.webtoonReducer.activeCategories,
+      categories: state?.webtoonReducer.categories,
+      selectedGenre: state?.webtoonReducer.selectedGenre,
+    }),
+  );
   const dispatch = useDispatch();
   const onSetActiveCategories = (activeCategories) =>
     dispatch(setActiveCategories(activeCategories));
   const onSetCategories = (categories) => dispatch(setCategories(categories));
-
-  const [selectedGenre, setSelectedGenre] = useState(1);
+  const onSetSelectedGenre = (id) => dispatch(setSelectedGenre(id));
+  // 여기까지!!
   const [name, setName] = useState('');
 
   const [oversize, setOversize] = useState(false);
@@ -127,14 +132,15 @@ export const Register = ({ genres, onSetGenres }) => {
         </div>
         <div className="flex">
           <h4>장르</h4>
-          <ul>
+          <ul className="list-genre-register flex">
             {genres.map(({ name, id }) => {
               return (
                 <ItemGenre
                   name={name}
                   key={id}
                   id={id}
-                  setSelectedGenre={setSelectedGenre}
+                  selectedGenre={selectedGenre}
+                  onSetSelectedGenre={onSetSelectedGenre}
                 />
               );
             })}
@@ -178,7 +184,7 @@ export const Register = ({ genres, onSetGenres }) => {
         </div>
         <div className="buttons-submit-webtoon flex">
           <button type="button">취소</button>
-          <button type="button" onClick={registerWebtoon}>
+          <button type="button" onClick={registerWebtoon} className="bold">
             등록
           </button>
         </div>

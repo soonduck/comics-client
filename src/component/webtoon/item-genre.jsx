@@ -1,11 +1,16 @@
-export const ItemGenre = ({ name, setSelectedGenre, id }) => {
+export const ItemGenre = ({ name, onSetSelectedGenre, id, selectedGenre }) => {
   const onClickGenre = () => {
-    setSelectedGenre(id);
+    onSetSelectedGenre(id);
     console.log(id);
   };
 
   return (
-    <li>
+    <li
+      className={
+        'item-genre-register' +
+        (selectedGenre === id ? ' selected-register-genre' : '')
+      }
+    >
       <button type="button" onClick={onClickGenre}>
         {name}
       </button>
