@@ -60,6 +60,7 @@ export const ViewerHeader = ({ episode, onSetEpisode }) => {
           setLogin(true);
         }
       });
+    window.scrollTo(0, 0);
   };
 
   return (

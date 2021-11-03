@@ -15,14 +15,16 @@ export const ItemMyEpisode = ({ url, title, createdAt, orderNum, webtoon }) => {
       });
   };
   return (
-    <li>
-      <button onClick={onClickEpisode}>
-        <img src={url} alt="" className="thumbnail-episode" />
-      </button>
-      <button type="button" onChange={onClickEpisode} className="episode-info">
-        <span className="episode-title">{title}</span>
-        <span className="episode-date">{createdAt}</span>
-      </button>
+    <li className="item-my-episode flex">
+      <div className="episode-left flex">
+        <button onClick={onClickEpisode} className="flex btn-my-episode">
+          <img src={url} alt="" className="small-thumbnail" />
+        </button>
+        <button className="flex btn-my-episode-info">
+          <span className="episode-title">{title}</span>
+          <span className="episode-date">{createdAt}</span>
+        </button>
+      </div>
       <div className="edit-episode-buttons">
         <button>수정</button>
         <button>삭제</button>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setWebtoon } from '../../redux/webtoon/webtoon.action';
 import { ItemMyEpisode } from '../../component/webtoon/item-my-episode';
 import history from '../../lib/history';
+import { TopInfoEpisodes } from '../../component/webtoon/top-info-episodes';
 
 export const MyWebtoon = () => {
   const { webtoon, episodes } = useSelector((state) => ({
@@ -30,30 +31,34 @@ export const MyWebtoon = () => {
   }, []);
 
   return (
-    <section className="wrap">
-      <div className="my-webtoon-info">
+    <section className="">
+      <div className="my-webtoon-info wrap flex">
         <img src={webtoon.thumbnailUrl} alt="" className="thumbnail" />
-        <div className="info-name">
-          <h2 className="my-webtoon-name">{webtoon.name}</h2>
-          <span className="my-writer-name">
-            {webtoon.writer ? webtoon.writer.username : ''}
-          </span>
-        </div>
-        <p className="my-webtoon-desc">{webtoon.description}</p>
-        <div className="my-webtoon-buttons">
-          <button
-            className="btn-new-episode"
-            type="button"
-            onClick={uploadEpisode}
-          >
-            신규 회차 등록
-          </button>
-          <button className="btn-edit-webtoon">작품 정보 수정</button>
-          <button className="btn-delete-webtoon">작품 삭제</button>
+        <div className="my-webtoon-top-info flex">
+          <div className="info-name flex">
+            <h2 className="my-webtoon-name bold">{webtoon.name}</h2>
+            <span className="my-writer-name">
+              {webtoon.writer ? webtoon.writer.username : ''}
+            </span>
+          </div>
+          <p className="my-webtoon-desc">{webtoon.description}</p>
+          <div className="my-webtoon-buttons flex">
+            <button
+              className="btn-new-episode bold"
+              type="button"
+              onClick={uploadEpisode}
+            >
+              신규 회차 등록
+            </button>
+            <button className="btn-edit-webtoon">작품 정보 수정</button>
+            <button className="btn-delete-webtoon">작품 삭제</button>
+          </div>
         </div>
       </div>
-      <div className="my-webtoon-episodes">
-        <ul className="list-episode">
+
+      <div className="my-webtoon-episodes wrap">
+        <TopInfoEpisodes episodes={episodes} my={true} />
+        <ul className="list-my-episode flex">
           {episodes.map(({ id, thumbnailUrl, createdAt, name, orderNum }) => (
             <ItemMyEpisode
               webtoon={webtoon}

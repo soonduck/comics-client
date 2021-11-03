@@ -91,8 +91,8 @@ export const Header = ({
               </>
             ) : (
               <>
-                <button onClick={toLogin}>Login</button>
-                <button>Guest Login</button>
+                <button onClick={toLogin}>로그인</button>
+                {/*<button>Guest Login</button>*/}
               </>
             )}
           </div>

@@ -89,7 +89,7 @@ export const Register = ({ genres, onSetGenres }) => {
   }, [categories]);
 
   return (
-    <section className="wrap">
+    <section className="wrap register-webtoon">
       {lessInfo ? (
         <div>
           <h4>정보를 입력해주세요.</h4>
@@ -98,7 +98,7 @@ export const Register = ({ genres, onSetGenres }) => {
       ) : (
         ''
       )}
-      <h2>새 웹툰 등록</h2>
+      <h2 className="bold">새 웹툰 등록</h2>
       <form className="registration">
         <h3>작품 제목</h3>
         <input

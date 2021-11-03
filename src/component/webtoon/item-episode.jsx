@@ -1,11 +1,8 @@
-import { useHistory } from 'react-router-dom';
 import api from '../../lib/api';
 import history from '../../lib/history';
 
 export const ItemEpisode = ({
-  id,
   url,
-  info,
   name,
   orderNum,
   createdAt,
@@ -33,7 +30,7 @@ export const ItemEpisode = ({
   };
 
   return (
-    <li className="item-episode flex" key={id}>
+    <li className="item-episode flex">
       <button onClick={onClickEpisode} type="button">
         <img src={url} alt="" className="small-thumbnail" />
       </button>
@@ -47,14 +44,6 @@ export const ItemEpisode = ({
           {createdAt.slice(0, 10).split('-').join('.')}
         </span>
       </button>
-      {info ? (
-        <></>
-      ) : (
-        <div className="edit-episode-buttons">
-          <button>수정</button>
-          <button>삭제</button>
-        </div>
-      )}
     </li>
   );
 };

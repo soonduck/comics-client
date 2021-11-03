@@ -25,7 +25,7 @@ export const Join = () => {
     });
   };
   return (
-    <form className="wrap-join">
+    <form className="wrap join-form flex">
       <h3>아이디</h3>
       <label htmlFor="userId">
         <input
@@ -65,16 +65,17 @@ export const Join = () => {
           }
         />
       </label>
-      <div className="join-buttons">
+      <div className="join-buttons flex">
         <button
+          className="btn-cancel-join"
           type="button"
           onClick={() => {
-            history.push('/');
+            history.push('/login');
           }}
         >
           취소
         </button>
-        <button type="button" onClick={joinIn}>
+        <button className="btn-join bold" type="button" onClick={joinIn}>
           가입
         </button>
       </div>

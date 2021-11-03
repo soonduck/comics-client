@@ -37,8 +37,8 @@ export const ItemComment = ({
               <i
                 className={'fa-' + (liked ? 'solid' : 'regular') + ' fa-heart'}
               />
+              <span className={liked ? 'red' : 'like-count'}>{count}</span>
             </button>
-            <span className={liked ? 'red' : ''}>{count}</span>
           </div>
         </div>
       </li>

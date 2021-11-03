@@ -17,32 +17,47 @@ export const Login = ({ onLogin, token }) => {
   const onClick = () => {
     api.post('user/login', loginInput).then((res) => {
       const cookies = new Cookies();
-      onLogin(cookies.get('x-jwt'));
-      if (cookies.get('x-jwt')) history.push('/');
+
+      if (cookies.get('x-jwt')) {
+        history.push('/');
+        onLogin(cookies.get('x-jwt'));
+      }
       if (!res.data.ok) setLoginFail(true);
     });
   };
 
   return (
-    <form className="login-form">
-      <input
-        type="text"
-        value={loginInput.userId}
-        onChange={({ target }) =>
-          setLoginInput({ ...loginInput, userId: target.value })
-        }
-      />
-      <input
-        type="password"
-        value={loginInput.password}
-        onChange={({ target }) =>
-          setLoginInput({ ...loginInput, password: target.value })
-        }
-      />
-      {loginFail ? <div>로그인에 실패했습니다</div> : ''}
-      <div>
-        <Link to="/join">아직 회원이 아니신가요?</Link>
-        <button type="button" onClick={onClick}>
+    <form className="login-form wrap flex">
+      <div className="flex">
+        <input
+          type="text"
+          value={loginInput.userId}
+          onChange={({ target }) =>
+            setLoginInput({ ...loginInput, userId: target.value })
+          }
+        />
+        <input
+          type="password"
+          value={loginInput.password}
+          onChange={({ target }) =>
+            setLoginInput({ ...loginInput, password: target.value })
+          }
+        />
+      </div>
+      {loginFail ? (
+        <div className="login-fail">로그인에 실패했습니다.</div>
+      ) : (
+        ''
+      )}
+      <div className="flex">
+        <Link to="/join" className="link-join">
+          아직 회원이 아니신가요?
+        </Link>
+        <button
+          type="button"
+          onClick={onClick}
+          className="btn-submit-login bold"
+        >
           로그인
         </button>
       </div>

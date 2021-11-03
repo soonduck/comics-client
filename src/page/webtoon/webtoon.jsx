@@ -4,6 +4,7 @@ import { ItemEpisode } from '../../component/webtoon/item-episode';
 import { WebtoonInfo } from '../../component/webtoon/webtoon-info';
 import { PayCoin } from '../../component/modal/pay-coin';
 import { NeedLogin } from '../../component/modal/need-login';
+import { TopInfoEpisodes } from '../../component/webtoon/top-info-episodes';
 
 export const Webtoon = ({
   webtoon,
@@ -31,13 +32,7 @@ export const Webtoon = ({
       {login ? <NeedLogin setLogin={setLogin} /> : ''}
       <WebtoonInfo webtoon={webtoon} commentCount={commentCount} />
       <section className="webtoon-episodes wrap">
-        <div className="total-episode-count flex">
-          <span>전체({episodes.length})</span>
-          <button className="btn-from" type="button">
-            <span>첫편부터</span>
-            <i className="fa-solid fa-chevron-down" />
-          </button>
-        </div>
+        <TopInfoEpisodes episodes={episodes} />
         <ul className="list-episode flex">
           {episodes.map((episode) => (
             <ItemEpisode

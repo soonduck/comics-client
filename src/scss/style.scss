@@ -1,10 +1,61 @@
 @import "color";
-
+$border-radius-small: 5px;
+$border-radius-mid: 7px;
+$border-radius: 10px;
 // 배경색
 #root, body, html{
   background: $main-BG;
 }
-.wrap:not(footer), header, .list-dropdown, .viewer{
+.BG-gray{
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  background: $sub-BG;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.modal-pay-coin, .first-notice,
+.modal-need-login{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: 350px;
+  height: 10rem;
+  text-align: center;
+  border-radius: $border-radius-small;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  h3{
+    font-size: 1.3rem;
+  }
+  .buttons-notice{
+    background: $main-blue;
+    color: white;
+  }
+  .buttons-pay, .buttons-login{
+    justify-content: center;
+    gap: 10px;
+    button:first-child{
+      border: 2px solid $main-BG;
+    }
+    button:last-child{
+      background: $main-blue;
+      color: white;
+    }
+  }
+  button{
+    width: 100px;
+    height: 38px;
+    border-radius: $border-radius-small;
+  }
+}
+
+.wrap:not(footer), header, .list-dropdown, .viewer,
+.modal-pay-coin, .first-notice, .modal-need-login{
   background: $main-white;
 }
 .active-category{
@@ -13,7 +64,9 @@
     color: $main-white !important;
   }
 }
-.write-comment button, .btn-charge-coin, .btn-charge-more{
+.write-comment button, .btn-charge-coin, .btn-charge-more,
+.btn-new-episode, .btn-submit-login, .btn-join,
+.btn-set-profile{
   background: $main-blue;
   color: $main-white;
 }
@@ -22,17 +75,18 @@
 .top-info button{
   color: $main-blue;
 }
-.episode-date,.viewer-episode-info span:nth-child(2),
+.episode-date, .viewer-episode-info span:nth-child(2),
 .fa-regular.fa-heart, .date-comment, .hearts span,
-.record-date, .my-webtoon-date{
+.record-date, .my-webtoon-date,.section-my-info button~div{
   color: $main-dark-gray;
 }
 .rating-average i,  .coin-icon{
   color: $main-yellow;
 }
-.fa-solid.fa-heart, .hearts .red{
+.fa-solid.fa-heart, .hearts .red, .login-fail{
   color: $heart-color;
 }
+
 
 // 보더
 .item-genre.genre-active{
@@ -57,7 +111,7 @@
     border: 2px solid $main-blue;
   }
 }
-.btn-go-home{
+.btn-go-home, .btn-edit-webtoon, .btn-delete-webtoon{
   border: 2px solid $main-blue;
 }
 .bottom-info-right div:first-child{
@@ -71,6 +125,20 @@
 }
 .item-tab-info.tab{
   border-bottom: 2px solid $main-blue;
+}
+.btn-cancel-join, .btn-disable-account{
+  border: 2px solid $main-gray;
+}
+.login-form input, .join-form input{
+  &:focus{
+    border: 2px solid $main-blue;
+  }
+}
+.wrap-my-info div span:first-child{
+  background: $main-BG;
+}
+.wrap-my-info div span:last-child{
+  border-bottom: 1px solid $main-gray;
 }
 
 // hovers

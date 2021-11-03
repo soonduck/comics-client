@@ -42,13 +42,13 @@ export const PayCoin = ({ setPay, viewer, pay, onSetEpisode }) => {
 
   return (
     <>
-      <div className="modal-pay-coin">
-        코인을 지불하시겠습니까?
-        <div className="buttons-pay">
+      <div className="modal-pay-coin flex">
+        <h3>코인을 지불하시겠습니까?</h3>
+        <div className="buttons-pay flex">
           <button type="button" onClick={goBack}>
             아니오
           </button>
-          <button type="button" onClick={payCoin}>
+          <button type="button" onClick={payCoin} className="bold">
             예
           </button>
         </div>
