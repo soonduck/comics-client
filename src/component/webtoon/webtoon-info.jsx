@@ -1,24 +1,22 @@
-export const WebtoonInfo = ({ webtoon }) => {
+export const WebtoonInfo = ({ webtoon, commentCount }) => {
   return (
-    <section className="webtoon-info wrap">
-      <img src={webtoon.thumbnailUrl} alt="" />
-      <div className="text-info">
+    <section className="webtoon-info wrap flex">
+      <img src={webtoon.thumbnailUrl} alt="" className="thumbnail" />
+      <div className="text-info flex">
         <div className="top-info">
           <h2 className="webtoon-info-title">{webtoon.name}</h2>
-          <span className="total-view">
-            <i className="fa-solid fa-eye" />
-            2.3K
-          </span>
-          <span className="total-comment">
+          <div className="total-comment">
             <i className="fa-solid fa-comment" />
-            1.2M
-          </span>
-          <button className="btn-view-all-comment">
-            <i className="fa-solid fa-angle-right" />
-          </button>
+            <span>{commentCount}</span>
+            <button className="btn-view-all-comment">
+              <i className="fa-solid fa-angle-right" />
+            </button>
+          </div>
         </div>
         <div className="bottom-info">
-          <span className="writer">soonduck</span>
+          <span className="writer">
+            {webtoon.writer ? webtoon.writer.username : ''}
+          </span>
         </div>
       </div>
     </section>

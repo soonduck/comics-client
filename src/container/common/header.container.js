@@ -7,7 +7,6 @@ import {
   setSelectedGenre,
   setViewer,
 } from '../../redux/webtoon/webtoon.action';
-import webtoonReducer from '../../redux/webtoon/webtoon.reducer';
 
 export const HeaderContainer = ({}) => {
   const { token, genres, genre, viewer, episode, user, selectedGenre } =

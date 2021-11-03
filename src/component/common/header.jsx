@@ -21,6 +21,7 @@ export const Header = ({
   user,
 }) => {
   const [dropdown, setDropdown] = useState(false);
+  const [onSearch, setOnSearch] = useState(false);
 
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
@@ -33,11 +34,6 @@ export const Header = ({
   const clickDropdown = () => {
     setDropdown(!dropdown);
   };
-
-  const goHome = () => {
-    pathname ? history.push('/') : document.location.reload();
-  };
-
   useEffect(() => {
     if (!pathname) {
       api.get('webtoon/genres').then((res) => {
@@ -61,11 +57,16 @@ export const Header = ({
     <header>
       <div className="wrap">
         <section className="top-header flex">
-          <Logo goHome={goHome} />
+          <Logo />
           <div className="header-right flex">
-            <form className="search-form">
+            <form className={'search-form' + (onSearch ? ' on-search' : '')}>
               <label htmlFor="searchInput">
-                <input type="text" id="searchInput" />
+                <input
+                  type="text"
+                  id="searchInput"
+                  onFocus={() => setOnSearch(true)}
+                  onBlur={() => setOnSearch(false)}
+                />
                 <button className="btn-search" type="button">
                   <i className="fas fa-search" />
                 </button>

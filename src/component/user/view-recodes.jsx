@@ -1,6 +1,6 @@
-import { ItemWebtoon } from '../webtoon/item-webtoon';
 import { useEffect } from 'react';
 import api from '../../lib/api';
+import { ItemRecord } from '../webtoon/item-record';
 
 export const ViewRecodes = ({ myViewRecords, onSetMyViewRecords }) => {
   useEffect(() => {
@@ -14,7 +14,7 @@ export const ViewRecodes = ({ myViewRecords, onSetMyViewRecords }) => {
     <div className="view-records">
       <ul className="list-view-record">
         {myViewRecords.map(({ id, name, thumbnailUrl }) => (
-          <ItemWebtoon id={id} key={id} title={name} url={thumbnailUrl} />
+          <ItemRecord id={id} key={id} title={name} url={thumbnailUrl} />
         ))}
       </ul>
     </div>

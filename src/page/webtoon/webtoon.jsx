@@ -14,26 +14,31 @@ export const Webtoon = ({
 }) => {
   const [pay, setPay] = useState({ ok: false, orderNum: 0 });
   const [login, setLogin] = useState(false);
+  const [commentCount, setCommentCount] = useState(0);
 
   useEffect(() => {
     api.get('webtoon/info/' + webtoonId).then((res) => {
       onSetWebtoon(res.data.webtoon, res.data.episodes);
+    });
+    api.get('comment/webtoon/' + webtoonId).then((res) => {
+      if (res.data) setCommentCount(res.data);
+      console.log(res.data);
     });
   }, []);
   return (
     <>
       {pay.ok ? <PayCoin setPay={setPay} pay={pay} /> : ''}
       {login ? <NeedLogin setLogin={setLogin} /> : ''}
-      <WebtoonInfo webtoon={webtoon} />
+      <WebtoonInfo webtoon={webtoon} commentCount={commentCount} />
       <section className="webtoon-episodes wrap">
-        <div className="total-episode-count">
+        <div className="total-episode-count flex">
           <span>전체({episodes.length})</span>
           <button className="btn-from" type="button">
-            <span>최신편부터</span>
+            <span>첫편부터</span>
             <i className="fa-solid fa-chevron-down" />
           </button>
         </div>
-        <ul className="list-episode">
+        <ul className="list-episode flex">
           {episodes.map((episode) => (
             <ItemEpisode
               info={true}

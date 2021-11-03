@@ -33,11 +33,15 @@ export const ItemEpisode = ({
   };
 
   return (
-    <li className="item-episode" key={id}>
+    <li className="item-episode flex" key={id}>
       <button onClick={onClickEpisode} type="button">
-        <img src={url} alt="" className="thumbnail-episode" />
+        <img src={url} alt="" className="small-thumbnail" />
       </button>
-      <button className="episode-info" onClick={onClickEpisode} type="button">
+      <button
+        className="episode-info flex"
+        onClick={onClickEpisode}
+        type="button"
+      >
         <span className="episode-title">{name}</span>
         <span className="episode-date">
           {createdAt.slice(0, 10).split('-').join('.')}

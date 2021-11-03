@@ -6,6 +6,7 @@ import { FirstEpisode } from '../modal/first-episode';
 import { LastEpisode } from '../modal/last-episode';
 import { PayCoin } from '../modal/pay-coin';
 import { NeedLogin } from '../modal/need-login';
+import { Logo } from '../common/logo';
 const queryString = require('query-string');
 
 export const ViewerHeader = ({ episode, onSetEpisode }) => {
@@ -71,17 +72,9 @@ export const ViewerHeader = ({ episode, onSetEpisode }) => {
       {login ? <NeedLogin setLogin={setLogin} /> : ''}
       {first ? <FirstEpisode setFirst={setFirst} /> : ''}
       {last ? <LastEpisode setLast={setLast} /> : ''}
-      <header className="viewer-header">
-        <div className="titles">
-          <h1 className="logo">
-            <button
-              onClick={() => {
-                history.push('/');
-              }}
-            >
-              soonduck-page
-            </button>
-          </h1>
+      <header className="viewer-header flex">
+        <div className="titles flex">
+          <Logo />
           <h2>
             <button
               onClick={() => {

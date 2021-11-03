@@ -42,7 +42,11 @@ export const Main = () => {
   }, [pathname]);
 
   return (
-    <main className={pathname ? '' : ' main-index'}>
+    <main
+      className={
+        pathname ? (pathname === 'view' ? 'main-view' : '') : ' main-index'
+      }
+    >
       <Switch>
         <Route path="/" exact component={() => <Index />} />
         <Route path="/login" exact component={LoginContainer} />

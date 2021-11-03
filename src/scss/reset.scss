@@ -69,3 +69,10 @@ a{
   text-decoration: none;
   color: inherit;
 }
+body *:focus{
+  outline: none;
+}
+
+textarea{
+  font-family: sans-serif;
+}

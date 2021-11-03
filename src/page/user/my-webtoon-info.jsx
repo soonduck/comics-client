@@ -17,10 +17,12 @@ export const MyWebtoonInfo = ({
   };
   return (
     <section className="wrap">
-      <button type="button" onClick={goRegisterWebtoonPage}>
-        웹툰 등록
-      </button>
-      <InfoTab setTabLeft={setTabLeft} />
+      <div className="">
+        <InfoTab setTabLeft={setTabLeft} />
+        <button type="button" onClick={goRegisterWebtoonPage}>
+          웹툰 등록
+        </button>
+      </div>
       {tabLeft ? (
         <ViewRecodes
           myViewRecords={myViewRecords}

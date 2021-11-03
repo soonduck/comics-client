@@ -14,23 +14,25 @@ export const WriteComment = ({ episode, onSetEpisodeComments }) => {
   };
 
   return (
-    <section className="wrap">
-      <h3>댓글 쓰기</h3>
-      <form>
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="5"
-          value={content}
-          onChange={({ target }) => {
-            setContent(target.value);
-          }}
-        />
-        <button type="button" onClick={postComment}>
-          등록
-        </button>
-      </form>
+    <section className="wrap write-comment-wrap">
+      <div className="write-comment flex">
+        <h3>댓글 쓰기</h3>
+        <form className="flex">
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="5"
+            value={content}
+            onChange={({ target }) => {
+              setContent(target.value);
+            }}
+          />
+          <button type="button" onClick={postComment}>
+            등록
+          </button>
+        </form>
+      </div>
     </section>
   );
 };

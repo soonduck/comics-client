@@ -1,6 +1,6 @@
 export const InfoTab = ({ setTabLeft }) => {
   return (
-    <ul className="list-tab-info">
+    <ul className="list-tab-info flex">
       <li className="item-tab-info">
         <button
           onClick={() => {

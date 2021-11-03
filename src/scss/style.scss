@@ -4,7 +4,7 @@
 #root, body, html{
   background: $main-BG;
 }
-.wrap:not(footer), header, .list-dropdown{
+.wrap:not(footer), header, .list-dropdown, .viewer{
   background: $main-white;
 }
 .active-category{
@@ -13,12 +13,25 @@
     color: $main-white !important;
   }
 }
-
+.write-comment button, .btn-charge-coin, .btn-charge-more{
+  background: $main-blue;
+  color: $main-white;
+}
 // 글씨색
-.coin, .item-category>button>span{
+.coin, .item-category>button>span,
+.top-info button{
   color: $main-blue;
 }
-
+.episode-date,.viewer-episode-info span:nth-child(2),
+.fa-regular.fa-heart, .date-comment, .hearts span{
+  color: $main-dark-gray;
+}
+.rating-average i,  .coin-icon{
+  color: $main-yellow;
+}
+.fa-solid.fa-heart, .hearts .red{
+  color: $heart-color;
+}
 
 // 보더
 .item-genre.genre-active{
@@ -27,9 +40,40 @@
 .list-dropdown{
   border: 1px solid $main-gray;
 }
-.item-dropdown:not(:last-child){
+.item-dropdown:not(:last-child),.total-episode-count{
   border-bottom: 1px solid $main-gray;
 }
 .item-category{
   border: 1px solid $main-blue;
+}
+.search-form{
+  label{
+    border: 2px solid $main-gray;
+  }
+}
+.search-form.on-search, {
+  label{
+    border: 2px solid $main-blue;
+  }
+}
+.btn-go-home{
+  border: 2px solid $main-blue;
+}
+.bottom-info-right div:first-child{
+  border-right: 1px solid $main-gray;
+}
+.write-comment{
+  border-bottom: 1px solid $main-gray;
+}
+.item-comment:not(:last-child){
+  border-bottom: 1px solid $main-gray;
+}
+
+// hovers
+.item-webtoon:hover{
+  background: $main-BG;
+  button{
+    font-weight: bold;
+    color: $main-blue;
+  }
 }
