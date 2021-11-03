@@ -607,8 +607,50 @@ main{
 // 웹툰 등록
 
 .register-webtoon{
+  flex-direction: column;
+  div{
+    align-items: center;
+    height: 40px;
+  }
   h2{
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    padding: 16px;
+  }
+  h4{
+    width: 140px;
+    font-size: 1.1rem;
+  }
+  .registration{
+    padding: 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+  input{
+    width: 250px;
+    height: 32px;
+    border-radius: $border-radius-small;
+    padding-left: 10px;
+  }
+  .buttons-submit-webtoon{
+    gap: 10px;
+  }
+  ul{
+    display: flex;
+    gap: 10px;
+  }
+  .upload-thumbnail{
+    width: 100px;
+    height: 130px;
+    border-radius: $border-radius;
+    button{
+      text-align: center;
+      width: 100%;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    img{
+      border-radius: $border-radius;
+    }
   }
 }
 

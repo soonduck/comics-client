@@ -1,26 +1,26 @@
 export const ItemCategory = ({
   name,
-  id,
   categories,
   setCategories,
   index,
+  activeCategories,
+  id,
+  onSetActiveCategories,
 }) => {
-  const onClickCategory = () => {
-    const result = [];
-    for (let i = 0; i < categories.length; i++) {
-      if (i === index) {
-        result[i] = { ...categories[i], selected: !categories[i].selected };
-        continue;
-      }
-      result[i] = { ...categories[i] };
-    }
-    setCategories(result);
+  const addActiveCategories = (id) => {
+    onSetActiveCategories({ ...activeCategories, [id]: !activeCategories[id] });
+    console.log(activeCategories);
   };
 
   return (
-    <li>
-      <button type="button" onClick={onClickCategory}>
-        #{name}
+    <li
+      className={
+        'item-category' + (activeCategories[id] ? ' active-category' : '')
+      }
+    >
+      <button type="button" onClick={() => addActiveCategories(id)}>
+        <span className="bold"># </span>
+        {name}
       </button>
     </li>
   );

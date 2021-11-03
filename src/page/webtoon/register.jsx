@@ -3,9 +3,22 @@ import { ItemCategory } from '../../component/webtoon/item-category';
 import { ItemGenre } from '../../component/webtoon/item-genre';
 import api from '../../lib/api';
 import history from '../../lib/history';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setActiveCategories,
+  setCategories,
+} from '../../redux/webtoon/webtoon.action';
 
 export const Register = ({ genres, onSetGenres }) => {
-  const [categories, setCategories] = useState([]);
+  const { activeCategories, categories } = useSelector((state) => ({
+    activeCategories: state?.webtoonReducer.activeCategories,
+    categories: state?.webtoonReducer.categories,
+  }));
+  const dispatch = useDispatch();
+  const onSetActiveCategories = (activeCategories) =>
+    dispatch(setActiveCategories(activeCategories));
+  const onSetCategories = (categories) => dispatch(setCategories(categories));
+
   const [selectedGenre, setSelectedGenre] = useState(1);
   const [name, setName] = useState('');
 
@@ -25,13 +38,15 @@ export const Register = ({ genres, onSetGenres }) => {
     }
     const formData = new FormData();
     formData.append('file', upload);
+    const result = [];
+    for (const key in activeCategories) {
+      if (activeCategories[key]) result.push(key);
+    }
     api
       .post('webtoon/register', {
         name,
         genreId: selectedGenre,
-        categoryIds: categories
-          .filter((category) => category.selected)
-          .map((category) => category.category.id),
+        categoryIds: result,
       })
       .then((res) => {
         if (res.data.ok) {
@@ -46,6 +61,7 @@ export const Register = ({ genres, onSetGenres }) => {
   };
 
   const setPreview = (event) => {
+    console.log(1233);
     const reader = new FileReader();
     reader.onload = function (event) {
       console.log(upload);
@@ -75,11 +91,12 @@ export const Register = ({ genres, onSetGenres }) => {
   useEffect(() => {
     api.get('webtoon/categories/' + selectedGenre).then((res) => {
       if (res.data) {
-        const result = [];
+        onSetCategories(res.data);
+        const tempActive = {};
         for (let i = 0; i < res.data.length; i++) {
-          result[i] = { selected: false, category: res.data[i] };
+          tempActive[res.data[i]['id']] = false;
         }
-        setCategories(result);
+        onSetActiveCategories(tempActive);
       }
     });
   }, [selectedGenre]);
@@ -89,7 +106,7 @@ export const Register = ({ genres, onSetGenres }) => {
   }, [categories]);
 
   return (
-    <section className="wrap register-webtoon">
+    <section className="wrap register-webtoon flex">
       {lessInfo ? (
         <div>
           <h4>정보를 입력해주세요.</h4>
@@ -99,54 +116,67 @@ export const Register = ({ genres, onSetGenres }) => {
         ''
       )}
       <h2 className="bold">새 웹툰 등록</h2>
-      <form className="registration">
-        <h3>작품 제목</h3>
-        <input
-          type="text"
-          value={name}
-          onChange={({ target }) => setName(target.value)}
-        />
-        <h3>장르</h3>
-        <ul>
-          {genres.map(({ name, id }) => {
-            return (
-              <ItemGenre
+      <form className="registration flex">
+        <div className="flex">
+          <h4>작품 제목</h4>
+          <input
+            type="text"
+            value={name}
+            onChange={({ target }) => setName(target.value)}
+          />
+        </div>
+        <div className="flex">
+          <h4>장르</h4>
+          <ul>
+            {genres.map(({ name, id }) => {
+              return (
+                <ItemGenre
+                  name={name}
+                  key={id}
+                  id={id}
+                  setSelectedGenre={setSelectedGenre}
+                />
+              );
+            })}
+          </ul>
+        </div>
+        <div className="flex categories">
+          <h4>카테고리</h4>
+          <ul className="list-category">
+            {categories.map(({ category, id, name }, index) => (
+              <ItemCategory
+                onSetActiveCategories={onSetActiveCategories}
+                activeCategories={activeCategories}
                 name={name}
-                key={id}
                 id={id}
-                setSelectedGenre={setSelectedGenre}
+                index={index}
+                key={id}
+                categories={categories}
+                setCategories={setCategories}
               />
-            );
-          })}
-        </ul>
-        <h3>카테고리</h3>
-        <ul>
-          {categories.map(({ category }, index) => (
-            <ItemCategory
-              name={category.name}
-              id={category.id}
-              index={index}
-              key={category.id}
-              categories={categories}
-              setCategories={setCategories}
-            />
-          ))}
-        </ul>
-        <h3>썸네일 이미지</h3>
-        <input
-          type="file"
-          id="webtoonThumbnail"
-          className="a11yHidden"
-          onChange={setPreview}
-          accept="image/*"
-        />
-        <button className="btn-thumbnail-upload">
-          <label htmlFor="webtoonThumbnail" className="label-upload-thumbnail">
-            <img src={pic} alt="" />
-            upload
-          </label>
-        </button>
-        <div className="buttons-submit-webtoon">
+            ))}
+          </ul>
+        </div>
+        <div
+          className={'flex upload-thumbnail' + (upload ? '' : ' unselected')}
+        >
+          <input
+            type="file"
+            id="webtoonThumbnail"
+            className="a11yHidden"
+            onChange={setPreview}
+            accept="image/*"
+          />
+          <button className="btn-thumbnail-upload" type="button">
+            <label
+              htmlFor="webtoonThumbnail"
+              className="label-upload-thumbnail"
+            >
+              {pic ? <img src={pic} alt="" /> : 'upload'}
+            </label>
+          </button>
+        </div>
+        <div className="buttons-submit-webtoon flex">
           <button type="button">취소</button>
           <button type="button" onClick={registerWebtoon}>
             등록
