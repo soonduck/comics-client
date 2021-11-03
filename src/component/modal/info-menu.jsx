@@ -9,15 +9,18 @@ export const InfoMenu = ({ onLogout, user }) => {
     cookies.remove('x-jwt');
     history.push('/');
   };
+
   return (
     <>
-      <ul className={'list-dropdown'}>
+      <ul className="list-dropdown">
         <li className="item-dropdown info-coin">
           <span className="title-coin">보유 코인</span>
           <span>
-            <span className="bold">{user.coin} </span>
+            <span className="bold coin">{user.coin} </span>
             Coin
           </span>
+        </li>
+        <li className="item-dropdown">
           <Link to={'/charge'}>코인충전</Link>
         </li>
         <li className="item-dropdown">

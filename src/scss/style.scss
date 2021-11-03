@@ -1,26 +1,35 @@
 @import "color";
 
-.list-webtoon, .wrap:not(:last-child),
-header, .webtoon-info, .login-form, .view-header,
-.images-episode,.bottom-info, .comments{
-  background: $main-white;
-}
-body{
+// 배경색
+#root, body, html{
   background: $main-BG;
 }
-header{
+.wrap:not(footer), header, .list-dropdown{
   background: $main-white;
 }
-.webtoon-info-title{
-  font-weight: 800;
-  font-size: 1.6rem;
-}
-.btn-view-all-comment{
-  color: $main-BG
+.active-category{
+  background: $main-blue;
+  button, span{
+    color: $main-white !important;
+  }
 }
 
-//헤더
+// 글씨색
+.coin, .item-category>button>span{
+  color: $main-blue;
+}
 
-.list-dropdown {
-  background: $main-white;
+
+// 보더
+.item-genre.genre-active{
+  border-bottom: 2px solid $main-blue;
+}
+.list-dropdown{
+  border: 1px solid $main-gray;
+}
+.item-dropdown:not(:last-child){
+  border-bottom: 1px solid $main-gray;
+}
+.item-category{
+  border: 1px solid $main-blue;
 }

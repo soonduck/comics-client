@@ -7,6 +7,7 @@ import {
   SET_GENRES,
   SET_MY_VIEW_RECORDS,
   SET_MY_WEBTOONS,
+  SET_SELECTED_GENRE,
   SET_VIEWER,
   SET_WEBTOON,
 } from './webtoon.type';
@@ -50,4 +51,10 @@ export const setMyWebtoons = (myWebtoons) => ({
 export const setMyViewRecords = (myViewRecords) => ({
   type: SET_MY_VIEW_RECORDS,
   payload: { myViewRecords },
+});
+
+// 장르 선택정보
+export const setSelectedGenre = (id) => ({
+  type: SET_SELECTED_GENRE,
+  payload: { selectedGenre: id },
 });

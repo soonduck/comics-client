@@ -1,0 +1,386 @@
+$border-radius-small: 5px;
+$border-radius: 10px;
+
+html, body, #root {
+  height: 100%;
+  user-select: none;
+}
+body * {
+  box-sizing: border-box;
+}
+
+//래핑
+header{
+  position: fixed;
+  z-index: 3;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  width: 100%;
+}
+.wrap{
+  width: 800px;
+  margin: 0 auto;
+}
+.header-wrap,{
+  width: 800px;
+  margin: 0 auto;
+  >*{
+    //width: 95%;
+    padding: 0 20px;
+  }
+}
+main:not(.main-index, .main-viewer){
+  padding-top: calc(5rem + 16px);
+}
+
+//헤더
+.top-header{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  line-height: 5rem;
+  margin: 0 auto;
+}
+.header-right{
+  display: flex;
+  position: relative;
+}
+.list-genre{
+  justify-content: space-around;
+  line-height: 4rem;
+    margin: 0 auto;
+    //width: 95%;
+    display: flex;
+}
+.list-dropdown{
+  position: fixed;
+  top: 4rem;
+  right: 0;
+  width: 120px;
+  line-height: 2rem;
+  text-align: center;
+  .title-coin{
+    font-size: 14px;
+  }
+  .bold{
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  .item-dropdown{
+    display: flex;
+    flex-direction: column;
+    height: 100%
+  }
+}
+
+
+
+
+// 메인 그리드
+.main-index{
+  padding-top: calc(9rem + 16px);
+  height: 100%;
+  display: grid;
+  grid-template:
+          "categories" 4rem
+          "main" 1fr
+          "footer" 3rem;
+  justify-items: center;
+  gap: 16px;
+  .categories{
+    padding-left: 20px;
+    line-height: 4rem;
+    ul{
+      display: flex;
+    }
+  }
+}
+
+[class^=section-webtoon-]{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.list-webtoon{
+  padding-top: 30px;
+  flex-grow: 1;
+  width: 95%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-flow: row;
+  row-gap: 2rem;
+  column-gap: 3rem;
+  justify-items: center;
+  .webtoon-title{
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .item-webtoon button{
+    display: flex;
+    flex-direction: column;
+  }
+}
+.thumbnail{
+  width: 100px;
+  height: 130px;
+  border-radius: $border-radius;
+}
+
+i {
+  display:inline-block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 800;
+  content: "\f014";
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.more-webtoon{
+  display: flex;
+  justify-content: flex-end;
+  width: 95%;
+  line-height: 2rem;
+  .btn-more{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    text-transform: uppercase;
+    i{
+      margin-right: 6px;
+    }
+  }
+}
+
+.footer{
+  //width: 100%;
+  text-align: center;
+  line-height: 2rem;
+}
+
+// webtoon info page
+
+// 메인 그리드
+.main-webtoon{
+  display: grid;
+  row-gap: 16px;
+  grid-template:
+          "info" 11rem
+          "main" 1fr
+          "footer" 3rem;
+  height: 100%;
+}
+
+.webtoon-info{
+  display: flex;
+  padding-top: 20px;
+  padding-left: 20px;
+  img{
+    width: 100px;
+    height: 130px;
+    border-radius: $border-radius;
+  }
+
+  .text-info{
+    display: flex;
+    height: 85%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 20px;
+    .webtoon-info-title{
+      margin-bottom: 10px;
+    }
+    i{
+      margin-right: 6px;
+    }
+    .total-view{
+      margin-right: 10px;
+    }
+  }
+}
+
+.thumbnail-episode{
+  height: 65px;
+  border-radius: $border-radius-small;
+}
+
+// 에피소드 목록
+
+.total-episode-count{
+  height: 4rem;
+  line-height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-bottom: 1px solid $main-BG;
+}
+.list-episode, .list-my-webtoon, .list-view-record{
+  padding: 24px;
+  .item-episode, .item-my-webtoon, .item-view-record{
+    display: flex;
+    .episode-info{
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      height: 65px;
+      justify-content: center;
+      flex-grow: 1;
+    }
+    .edit-episode-buttons{
+      display: flex;
+      align-items: center;
+      justify-self: flex-end;
+    }
+  }
+  .item-episode:not(:last-child){
+    padding-bottom: 20px;
+  }
+}
+.btn-from > i{
+  margin-left: 6px;
+}
+
+.modal-pay-coin, .modal-need-login{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// 로그인
+.login-main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+
+  .login-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30vh;
+    transform: translateY(-50%);
+  }
+
+}
+
+// 뷰어
+
+.first-notice, .last-notice, .modal-pay-coin, .modal-need-login{
+  position: fixed;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10;
+}
+.BG-gray{
+  position: fixed;
+  top: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+}
+
+.viewer-header{
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  line-height: 4rem;
+  padding: 0 30px;
+  .titles{
+    display: flex;
+  }
+}
+.main-viewer{
+  padding-top: 3rem;
+  display: grid;
+  gap: 16px;
+  margin: 0 auto;
+
+  .images-episode{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    img{
+      max-width: 760px;
+    }
+
+  }
+  .bottom-info, .comments{
+    width: 800px;
+    justify-self: center;
+  }
+  //바텀 인포
+  .bottom-info{
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 8rem;
+    .episode-info{
+      display: flex;
+      flex-direction: column;
+
+    }
+    .bottom-info-right{
+      display: flex;
+      >*{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 4rem;
+      }
+      .rating-average, .comment-count{
+        line-height: 2rem;
+      }
+    }
+  }
+  //코멘트
+  .comments{
+    padding: 30px 20px;
+    .comment-top{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 2rem;
+    }
+    .list-comment{
+      padding: 30px 0;
+    }
+    .item-comment{
+      display: flex;
+      .comment-title{
+        display: flex;
+      }
+    }
+    .cover{
+      .profile-pic-comment{
+        border-radius: 30px;
+        min-width: 70px;
+        min-height: 70px;
+        width: 70px;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+  }
+}
+//푸터
+.footer{
+  height: 3rem;
+  line-height: 3rem;
+}
+
+// 검색 페이지

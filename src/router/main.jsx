@@ -21,10 +21,9 @@ import { RegisterContainer } from '../container/webtoon/register.container';
 import { MyWebtoon } from '../page/webtoon/my-webtoon';
 import { UploadEpisode } from '../page/webtoon/upload-episode';
 
-export const Main = ({ setDropdown, selectedGenre }) => {
+export const Main = () => {
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
-  const mainClass = constants.mainClass[pathname];
   const dispatch = useDispatch();
   const onLogin = (token) => dispatch(login(token));
   const onMyInfo = (user) => dispatch(myInfo(user));
@@ -40,17 +39,12 @@ export const Main = ({ setDropdown, selectedGenre }) => {
     } catch (error) {
       cookies.remove('x-jwt');
     }
-    setDropdown(false);
   }, [pathname]);
 
   return (
-    <main className={mainClass ? mainClass : pathname ? '' : 'main-index'}>
+    <main className={pathname ? '' : ' main-index'}>
       <Switch>
-        <Route
-          path="/"
-          exact
-          component={() => <Index selectedGenre={selectedGenre} />}
-        />
+        <Route path="/" exact component={() => <Index />} />
         <Route path="/login" exact component={LoginContainer} />
         <Route path="/join" exact component={Join} />
         <Route path="/join-success" exact component={JoinSuccess} />
@@ -68,7 +62,6 @@ export const Main = ({ setDropdown, selectedGenre }) => {
         <Route path="/my-webtoon/:id" exact component={MyWebtoon} />
         <Route path="/view/episode/:id" exact component={ViewerContainer} />
       </Switch>
-      <Footer />
     </main>
   );
 };

@@ -4,10 +4,9 @@ import api from '../../lib/api';
 import { ViewerHeader } from '../webtoon/viewer-header';
 import history from '../../lib/history';
 import { InfoMenu } from '../modal/info-menu';
+import { Logo } from './logo';
 
 export const Header = ({
-  dropdown,
-  setDropdown,
   token,
   onLogout,
   genres,
@@ -18,9 +17,11 @@ export const Header = ({
   onSetEpisode,
   webtoonName,
   selectedGenre,
-  setSelectedGenre,
+  onSetSelectedGenre,
   user,
 }) => {
+  const [dropdown, setDropdown] = useState(false);
+
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
 
@@ -31,6 +32,10 @@ export const Header = ({
 
   const clickDropdown = () => {
     setDropdown(!dropdown);
+  };
+
+  const goHome = () => {
+    pathname ? history.push('/') : document.location.reload();
   };
 
   useEffect(() => {
@@ -46,10 +51,6 @@ export const Header = ({
     else onSetViewer(false);
   }, [pathname]);
 
-  useEffect(() => {
-    setDropdown(false);
-  }, [token]);
-
   return viewer ? (
     <ViewerHeader
       episode={episode}
@@ -58,19 +59,10 @@ export const Header = ({
     />
   ) : (
     <header>
-      <div className="header-wrap">
-        <section className="top-header">
-          <h1 className="logo-title">
-            <button
-              type="button"
-              onClick={() => {
-                pathname ? history.push('/') : document.location.reload();
-              }}
-            >
-              soonduck-page
-            </button>
-          </h1>
-          <div className="header-right">
+      <div className="wrap">
+        <section className="top-header flex">
+          <Logo goHome={goHome} />
+          <div className="header-right flex">
             <form className="search-form">
               <label htmlFor="searchInput">
                 <input type="text" id="searchInput" />
@@ -85,6 +77,11 @@ export const Header = ({
                   type="button"
                   className="btn-my-info"
                   onClick={clickDropdown}
+                  onBlur={() => {
+                    setTimeout(() => {
+                      setDropdown(false);
+                    }, 200);
+                  }}
                 >
                   <i className="fa-solid fa-user" />
                 </button>
@@ -102,7 +99,7 @@ export const Header = ({
           <></>
         ) : (
           <section className="bottom-header">
-            <ul className="list-genre">
+            <ul className="list-genre flex">
               {genres.length ? (
                 genres.map(({ id, name }) => (
                   <li
@@ -112,7 +109,9 @@ export const Header = ({
                       (selectedGenre === id ? ' genre-active' : '')
                     }
                   >
-                    <button onClick={() => setSelectedGenre(id)}>{name}</button>
+                    <button onClick={() => onSetSelectedGenre(id)}>
+                      {name}
+                    </button>
                   </li>
                 ))
               ) : (

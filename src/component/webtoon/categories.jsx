@@ -22,8 +22,9 @@ export const Categories = ({
     onSetActiveCategories({ ...activeCategories, [id]: !activeCategories[id] });
   };
   return (
-    <section className="categories wrap">
-      <ul className="list-category">
+    <section className="categories flex">
+      <h3>카테고리</h3>
+      <ul className="list-category flex">
         {categories.map(({ id, name }) => (
           <li
             key={id}
@@ -31,7 +32,9 @@ export const Categories = ({
               'item-category' + (activeCategories[id] ? ' active-category' : '')
             }
           >
-            <button onClick={() => addActiveCategories(id)}>{name}</button>
+            <button onClick={() => addActiveCategories(id)}>
+              <span className="bold">#</span> {name}
+            </button>
           </li>
         ))}
       </ul>

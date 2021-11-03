@@ -6,6 +6,7 @@ import {
   SET_GENRES,
   SET_MY_VIEW_RECORDS,
   SET_MY_WEBTOONS,
+  SET_SELECTED_GENRE,
   SET_VIEWER,
   SET_WEBTOON,
 } from './webtoon.type';
@@ -24,6 +25,8 @@ const initialState = {
   viewer: false,
   myWebtoons: [],
   myViewRecords: [],
+
+  selectedGenre: 1,
 };
 export default function webtoonReducer(state = initialState, action) {
   switch (action.type) {
@@ -54,6 +57,9 @@ export default function webtoonReducer(state = initialState, action) {
       return { ...state, myWebtoons: action.payload.myWebtoons };
     case SET_MY_VIEW_RECORDS:
       return { ...state, myViewRecords: action.payload.myViewRecords };
+
+    case SET_SELECTED_GENRE:
+      return { ...state, selectedGenre: action.payload.selectedGenre };
 
     default:
       return state;

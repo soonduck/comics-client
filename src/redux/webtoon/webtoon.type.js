@@ -11,3 +11,5 @@ export const SET_VIEWER = 'webtoon/SET_VIEWER';
 
 export const SET_MY_WEBTOONS = 'webtoon/SET_MY_WEBTOONS';
 export const SET_MY_VIEW_RECORDS = 'webtoon/SET_MY_VIEW_RECORD';
+
+export const SET_SELECTED_GENRE = 'webtoon/SET_SELECTED_GENRE';
