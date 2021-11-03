@@ -66,10 +66,8 @@ export const Register = ({ genres, onSetGenres }) => {
   };
 
   const setPreview = (event) => {
-    console.log(1233);
     const reader = new FileReader();
     reader.onload = function (event) {
-      console.log(upload);
       setPic(event.target.result);
     };
     if (event.target.files[0] && event.target.files[0].size < maxSize) {
@@ -178,7 +176,14 @@ export const Register = ({ genres, onSetGenres }) => {
               htmlFor="webtoonThumbnail"
               className="label-upload-thumbnail"
             >
-              {pic ? <img src={pic} alt="" /> : 'upload'}
+              {pic ? (
+                <img src={pic} alt="" />
+              ) : (
+                <>
+                  <div>Thumbnail</div>
+                  <div>100x130</div>
+                </>
+              )}
             </label>
           </button>
         </div>

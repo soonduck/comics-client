@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import api from '../../lib/api';
+import history from '../../lib/history';
+import { myInfo } from '../../redux/user/user.action';
 
 export const EditMyInfo = () => {
   const { user } = useSelector((state) => ({
@@ -11,6 +13,8 @@ export const EditMyInfo = () => {
   const [upload, setUpload] = useState();
   const [oversize, setOversize] = useState(false);
   const [username, setUsername] = useState('');
+
+  const [inserting, setInserting] = useState(false);
 
   // 3MB 사이즈
   const maxSize = 3 * 1024 * 1024;
@@ -33,6 +37,9 @@ export const EditMyInfo = () => {
     api.post('user/edit-info', { username }).then((res) => {
       console.log(res);
     });
+
+    history.push('/my-info');
+    document.location.reload();
   };
 
   const setPreview = (event) => {
@@ -60,14 +67,14 @@ export const EditMyInfo = () => {
   }, [user]);
 
   return (
-    <section className="wrap">
-      <h2>프로필 설정</h2>
-      <form>
-        <label htmlFor="setMyProfilePic">
-          <div id="image_container">
-            <img src={pic} alt="" />
+    <section className="wrap edit-profile flex">
+      <h2 className="bold">프로필 설정</h2>
+      <form className="edit-profile-form flex">
+        <label className="relative-label" htmlFor="setMyProfilePic">
+          <div className="image-container">
+            <img src={pic ? pic : user.pic} alt="" />
           </div>
-          <i className="fa-solid fa-camera-retro"></i>
+          <i className="fa-solid fa-camera-retro" />
         </label>
         <input
           type="file"
@@ -87,22 +94,28 @@ export const EditMyInfo = () => {
           <span>닉네임을 입력해주세요.</span>
           <span>{username.length}/16</span>
         </div>
-        <label htmlFor="setMyNickname">
+        <label
+          htmlFor="setMyNickname"
+          className={'set-nickname-label' + (inserting ? ' inserting' : '')}
+        >
           <input
             type="text"
             id="setMyNickname"
             value={username}
             onChange={onChangeUsername}
             maxLength="16"
+            onFocus={() => setInserting(true)}
+            onBlur={() => setInserting(false)}
           />
-          <button>
-            <i className="fa-solid fa-circle-xmark"></i>
+          <button type="button" onClick={() => setUsername('')}>
+            <i className="fa-solid fa-circle-xmark" />
           </button>
         </label>
         <button
           type="button"
-          disabled={username === user.username && !upload}
+          disabled={(username === user.username || !username) && !upload}
           onClick={editMyInfo}
+          className="btn-save-profile"
         >
           저장
         </button>

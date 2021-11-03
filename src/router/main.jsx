@@ -25,8 +25,8 @@ export const Main = () => {
   const location = useLocation();
   const pathname = location.pathname.split('/')[1];
   const dispatch = useDispatch();
-  const onLogin = (token) => dispatch(login(token));
   const onMyInfo = (user) => dispatch(myInfo(user));
+  const onLogin = (token) => dispatch(login(token));
 
   useEffect(() => {
     const cookies = new Cookies();

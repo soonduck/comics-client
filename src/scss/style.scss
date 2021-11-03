@@ -18,47 +18,11 @@ $border-radius: 10px;
   width: 100vw;
   overflow: hidden;
 }
-.modal-pay-coin, .first-notice,
-.modal-need-login{
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  width: 350px;
-  height: 10rem;
-  text-align: center;
-  border-radius: $border-radius-small;
-  flex-direction: column;
-  justify-content: center;
-  gap: 30px;
-  h3{
-    font-size: 1.3rem;
-  }
-  .buttons-notice{
-    background: $main-blue;
-    color: white;
-  }
-  button{
-    width: 100px;
-    height: 38px;
-    border-radius: $border-radius-small;
-  }
-}
-.buttons-pay, .buttons-login, .buttons-submit-webtoon{
-  justify-content: center;
-  gap: 10px;
-  button:first-child{
-    border: 2px solid $main-BG;
-  }
-  button:last-child{
-    background: $main-blue;
-    color: white;
-  }
-}
+
 
 .wrap:not(footer), header, .list-dropdown, .viewer,
-.modal-pay-coin, .first-notice, .modal-need-login{
+.modal-pay-coin, .first-notice, .modal-need-login,
+i.fa-camera-retro{
   background: $main-white;
 }
 .active-category{
@@ -69,7 +33,7 @@ $border-radius: 10px;
 }
 .write-comment button, .btn-charge-coin, .btn-charge-more,
 .btn-new-episode, .btn-submit-login, .btn-join,
-.btn-set-profile{
+.btn-set-profile, .btn-save-profile:not(:disabled){
   background: $main-blue;
   color: $main-white;
 }
@@ -80,9 +44,15 @@ $border-radius: 10px;
 }
 .episode-date, .viewer-episode-info span:nth-child(2),
 .fa-regular.fa-heart, .date-comment, .hearts span,
-.record-date, .my-webtoon-date,.section-my-info button~div{
+.record-date, .my-webtoon-date,.section-my-info button~div,
+i.fa-camera-retro, .input-nickname-desc{
   color: $main-dark-gray;
 }
+
+.fa-circle-xmark{
+  color: $main-gray;
+}
+
 .rating-average i,  .coin-icon{
   color: $main-yellow;
 }
@@ -119,8 +89,9 @@ $border-radius: 10px;
     border: 2px solid $main-blue;
   }
 }
+
 .btn-go-home, .btn-edit-webtoon, .btn-delete-webtoon,
-.selected-register-genre {
+.selected-register-genre, i.fa-camera-retro, .set-nickname-label.inserting{
   border: 2px solid $main-blue;
 }
 .bottom-info-right div:first-child{
@@ -136,7 +107,8 @@ $border-radius: 10px;
   border-bottom: 2px solid $main-blue;
 }
 .btn-cancel-join, .btn-disable-account, .upload-thumbnail.unselected,
-.item-genre-register:not(.selected-register-genre){
+.item-genre-register:not(.selected-register-genre),
+.set-nickname-label{
   border: 2px solid $main-gray;
 }
 .login-form input, .join-form input, .register-webtoon input{
@@ -158,5 +130,45 @@ $border-radius: 10px;
   button{
     font-weight: bold;
     color: $main-blue;
+  }
+}
+// 모달(임시)
+
+.modal-pay-coin, .first-notice,
+.modal-need-login{
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: 350px;
+  height: 10rem;
+  text-align: center;
+  border-radius: $border-radius-small;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  h3{
+    font-size: 1.3rem;
+  }
+  .buttons-notice{
+    background: $main-blue;
+    color: white;
+  }
+  button{
+    width: 100px;
+    height: 38px;
+    border-radius: $border-radius-small;
+  }
+}
+.buttons-pay, .buttons-login, .buttons-submit-webtoon{
+  justify-content: center;
+  gap: 10px;
+  button:first-child{
+    border: 2px solid $main-BG;
+  }
+  button:last-child{
+    background: $main-blue;
+    color: white;
   }
 }
