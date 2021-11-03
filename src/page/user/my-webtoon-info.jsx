@@ -17,9 +17,13 @@ export const MyWebtoonInfo = ({
   };
   return (
     <section className="wrap">
-      <div className="">
-        <InfoTab setTabLeft={setTabLeft} />
-        <button type="button" onClick={goRegisterWebtoonPage}>
+      <div className="my-tabs flex">
+        <InfoTab tabLeft={tabLeft} setTabLeft={setTabLeft} />
+        <button
+          type="button"
+          onClick={goRegisterWebtoonPage}
+          className="btn-go-register"
+        >
           웹툰 등록
         </button>
       </div>

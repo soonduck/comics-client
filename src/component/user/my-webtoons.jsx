@@ -10,9 +10,15 @@ export const MyWebtoons = ({ onSetMyWebtoons, myWebtoons }) => {
   }, []);
   return (
     <div className="my-webtoon-list">
-      <ul className="list-my-webtoon">
-        {myWebtoons.map(({ name, thumbnailUrl, id }) => (
-          <ItemMyWebtoon name={name} url={thumbnailUrl} key={id} id={id} />
+      <ul className="list-my-webtoon flex">
+        {myWebtoons.map(({ name, thumbnailUrl, id, updatedAt }) => (
+          <ItemMyWebtoon
+            name={name}
+            url={thumbnailUrl}
+            key={id}
+            id={id}
+            updatedAt={updatedAt}
+          />
         ))}
       </ul>
     </div>

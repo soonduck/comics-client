@@ -12,9 +12,15 @@ export const ViewRecodes = ({ myViewRecords, onSetMyViewRecords }) => {
 
   return (
     <div className="view-records">
-      <ul className="list-view-record">
-        {myViewRecords.map(({ id, name, thumbnailUrl }) => (
-          <ItemRecord id={id} key={id} title={name} url={thumbnailUrl} />
+      <ul className="list-view-record flex">
+        {myViewRecords.map(({ id, name, thumbnailUrl, updatedAt }) => (
+          <ItemRecord
+            id={id}
+            key={id}
+            title={name}
+            url={thumbnailUrl}
+            updatedAt={updatedAt}
+          />
         ))}
       </ul>
     </div>

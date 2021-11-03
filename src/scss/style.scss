@@ -23,7 +23,8 @@
   color: $main-blue;
 }
 .episode-date,.viewer-episode-info span:nth-child(2),
-.fa-regular.fa-heart, .date-comment, .hearts span{
+.fa-regular.fa-heart, .date-comment, .hearts span,
+.record-date, .my-webtoon-date{
   color: $main-dark-gray;
 }
 .rating-average i,  .coin-icon{
@@ -67,6 +68,9 @@
 }
 .item-comment:not(:last-child){
   border-bottom: 1px solid $main-gray;
+}
+.item-tab-info.tab{
+  border-bottom: 2px solid $main-blue;
 }
 
 // hovers

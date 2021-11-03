@@ -40,6 +40,7 @@ export const Header = ({
         onSetGenres(res.data);
       });
     }
+    onSetSelectedGenre(1);
   }, [pathname]);
 
   useEffect(() => {
