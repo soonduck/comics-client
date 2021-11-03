@@ -673,6 +673,94 @@ main{
 
 // 에피소드 등록
 
+.upload-episode{
+  flex-direction: column;
+  gap: 12px;
+  .upload-episode-gap{
+    gap: 12px;
+    flex-direction: column;
+  }
+  h2{
+    font-size: 1.5rem;
+    padding: 16px;
+  }
+  div{
+    align-items: center;
+    line-height: 40px;
+    h3{
+      width: 140px;
+      font-size: 1.1rem;
+    }
+    input{
+      height: 32px;
+      width: 300px;
+      border-radius: $border-radius-small;
+      padding-left: 10px;
+    }
+  }
+  form{
+    padding-left: 16px;
+    .buttons-submit-episode{
+      button{
+        width: 100px;
+        height: 38px;
+        border-radius: $border-radius-small;
+      }
+      margin-bottom: 16px;
+    }
+    .div-thumbnail{
+      height: 140px;
+      .upload-thumbnail{
+        border-radius: $border-radius;
+        width: 100px;
+        height: 130px;
+        button{
+          text-align: center;
+          width: 100%;
+          text-transform: uppercase;
+          font-size: 0.9rem;
+          line-height: 40px;
+        }
+        label{
+          width: 100px;
+          height: 130px;
+          flex-direction: column;
+          justify-content: center;
+        }
+        img{
+          border-radius: $border-radius;
+        }
+      }
+    }
+    .container-webtoons{
+      width: 400px;
+      margin-bottom: 20px;
+      label{
+        line-height: 50px;
+        padding-left: 4px;
+        font-size: 1.6rem;
+      }
+      ul{
+        margin-left: 22px;
+        list-style: unset;
+        line-height: 3rem;
+        width: 100%;
+        li{
+          justify-content: space-between;
+        }
+        button{
+          height: 2.2rem;
+          width: 80px;
+          border-radius: $border-radius-small;
+          margin-left: 10px;
+        }
+      }
+    }
+
+  }
+}
+
+
 // 개인정보 페이지
 .section-my-info{
   flex-direction: column;
@@ -765,10 +853,11 @@ main{
     line-height: 38px;
     border-radius: $border-radius-small;
     padding-left: 10px;
-    padding-right: 10px;
     margin-bottom: 24px;
     input{
       border:none;
+      width: 160px;
+
     }
   }
 

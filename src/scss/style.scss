@@ -33,7 +33,8 @@ i.fa-camera-retro{
 }
 .write-comment button, .btn-charge-coin, .btn-charge-more,
 .btn-new-episode, .btn-submit-login, .btn-join,
-.btn-set-profile, .btn-save-profile:not(:disabled){
+.btn-set-profile, .btn-save-profile:not(:disabled),
+.container-webtoons button{
   background: $main-blue;
   color: $main-white;
 }
@@ -91,7 +92,8 @@ i.fa-camera-retro, .input-nickname-desc{
 }
 
 .btn-go-home, .btn-edit-webtoon, .btn-delete-webtoon,
-.selected-register-genre, i.fa-camera-retro, .set-nickname-label.inserting{
+.selected-register-genre, i.fa-camera-retro, .set-nickname-label.inserting,
+.input-episode-title:focus{
   border: 2px solid $main-blue;
 }
 .bottom-info-right div:first-child{
@@ -108,7 +110,7 @@ i.fa-camera-retro, .input-nickname-desc{
 }
 .btn-cancel-join, .btn-disable-account, .upload-thumbnail.unselected,
 .item-genre-register:not(.selected-register-genre),
-.set-nickname-label{
+.set-nickname-label,.input-episode-title{
   border: 2px solid $main-gray;
 }
 .login-form input, .join-form input, .register-webtoon input{
@@ -161,7 +163,8 @@ i.fa-camera-retro, .input-nickname-desc{
     border-radius: $border-radius-small;
   }
 }
-.buttons-pay, .buttons-login, .buttons-submit-webtoon{
+.buttons-pay, .buttons-login, .buttons-submit-webtoon,
+.buttons-submit-episode{
   justify-content: center;
   gap: 10px;
   button:first-child{

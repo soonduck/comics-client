@@ -11,7 +11,7 @@ export const UploadEpisode = () => {
   });
   const [uploads, setUploads] = useState([]);
   const [upload, setUpload] = useState('');
-  const [pic, setPic] = useState([]);
+  const [pic, setPic] = useState('');
 
   const maxSize = 3 * 1024 * 1024;
   const [oversize, setOversize] = useState(false);
@@ -101,80 +101,120 @@ export const UploadEpisode = () => {
   }, []);
 
   return (
-    <section className="wrap">
-      <form action="">
-        <h3>회차(자동계산)</h3>
-        <span className="autoNum">{episodeInput.orderNum}</span>
-        <h3>제목</h3>
-        <label htmlFor="">
-          <input
-            type="text"
-            value={episodeInput.name}
-            onChange={({ target }) => {
-              setEpisodeInput({
-                ...episodeInput,
-                name: target.value,
-              });
-            }}
-          />
-        </label>
-        <h3>결제</h3>
-        <ul>
-          <li>
-            <button
-              className={!episodeInput.pay ? 'btn-pay-checked' : ''}
-              type="button"
-              onClick={() => {
-                setEpisodeInput({ ...episodeInput, pay: false });
+    <section className="wrap upload-episode flex">
+      <h2 className="bold">에피소드 등록</h2>
+      <form className="upload-episode-gap flex">
+        <div className="flex">
+          <h3>회차(자동계산)</h3>
+          <span className="autoNum">{episodeInput.orderNum}</span>
+        </div>
+        <div className="flex">
+          <h3>제목</h3>
+          <label htmlFor="">
+            <input
+              className="input-episode-title"
+              type="text"
+              value={episodeInput.name}
+              onChange={({ target }) => {
+                setEpisodeInput({
+                  ...episodeInput,
+                  name: target.value,
+                });
               }}
-            >
-              무료
+            />
+          </label>
+        </div>
+        <div className="flex">
+          <h3>결제</h3>
+          <ul className="flex">
+            <li className="item-pay">
+              <button
+                className={!episodeInput.pay ? 'btn-pay-checked' : ''}
+                type="button"
+                onClick={() => {
+                  setEpisodeInput({ ...episodeInput, pay: false });
+                }}
+              >
+                무료
+              </button>
+            </li>
+            <li className="item-pay">
+              <button
+                className={episodeInput.pay ? 'btn-pay-checked' : ''}
+                type="button"
+                onClick={() => {
+                  setEpisodeInput({ ...episodeInput, pay: true });
+                }}
+              >
+                유료
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div className="flex div-thumbnail">
+          <h3>썸네일</h3>
+          <div
+            className={'flex upload-thumbnail' + (upload ? '' : ' unselected')}
+          >
+            <input
+              type="file"
+              id="webtoonThumbnail"
+              className="a11yHidden"
+              onChange={setPreview}
+              accept="image/*"
+            />
+            <button className="btn-thumbnail-upload" type="button">
+              <label
+                htmlFor="webtoonThumbnail"
+                className="label-upload-thumbnail flex"
+              >
+                {pic ? (
+                  <img src={pic} alt="" />
+                ) : (
+                  <>
+                    <div>Thumbnail</div>
+                    <div>100x130</div>
+                  </>
+                )}
+              </label>
             </button>
-          </li>
-          <li>
-            <button
-              className={episodeInput.pay ? 'btn-pay-checked' : ''}
-              type="button"
-              onClick={() => {
-                setEpisodeInput({ ...episodeInput, pay: true });
-              }}
-            >
-              유료
-            </button>
-          </li>
-        </ul>
-        <h3>썸네일</h3>
+          </div>
+        </div>
+        <div className="flex">
+          <h3>원고</h3>
+          <div className="container-webtoons">
+            <label htmlFor="myEpisodeImage" className="label-upload-images">
+              <i className="fa-solid fa-folder-plus" />
+            </label>
+            <ul className="list-episode-image">
+              {uploads.map((upload, index) => {
+                if (upload)
+                  return (
+                    <li className="item-episode-image flex" key={index}>
+                      {upload.name}
+                      <button
+                        onClick={() => {
+                          deleteSingleFile(index);
+                        }}
+                      >
+                        delete
+                      </button>
+                    </li>
+                  );
+              })}
+            </ul>
 
-        <label htmlFor="myEpisodeThumbnail" className="label-upload-thumbnail">
-          <img src={pic} alt="" />
-          upload
-        </label>
-        <input type="file" id="myEpisodeThumbnail" onChange={setPreview} />
-        <h3>원고</h3>
-        <ul className="list-episode-image">
-          {uploads.map((upload, index) => {
-            if (upload)
-              return (
-                <li className="item-episode-image" key={index}>
-                  {upload.name}
-                  <button
-                    onClick={() => {
-                      deleteSingleFile(index);
-                    }}
-                  >
-                    delete
-                  </button>
-                </li>
-              );
-          })}
-        </ul>
-        <label htmlFor="myEpisodeImage" className="label-upload-images">
-          upload
-        </label>
-        <input type="file" id="myEpisodeImage" onChange={onSetUploads} />
-        <div className="buttons-submit-episode">
+            <input
+              type="file"
+              id="myEpisodeImage"
+              onChange={onSetUploads}
+              className="a11yHidden"
+            />
+          </div>
+        </div>
+        <div className="buttons-submit-episode flex">
           <button type="button">취소</button>
-          <button type="button" onClick={uploadEpisode}>
+          <button type="button" onClick={uploadEpisode} className="bold">
             등록
           </button>
         </div>
