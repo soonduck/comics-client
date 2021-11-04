@@ -175,3 +175,19 @@ i.fa-camera-retro, .input-nickname-desc{
     color: white;
   }
 }
+// 급하게 추가 ㅠㅠ
+.list-pay-buttons{
+  gap: 10px;
+  button{
+    border-radius: $border-radius-small;
+    width: 3rem;
+    border: 2px solid $main-gray;
+    height: 2rem;
+  }
+  button.btn-pay-checked{
+    background: $main-blue;
+    color: $main-white;
+    font-weight: bold;
+    border: none;
+  }
+}

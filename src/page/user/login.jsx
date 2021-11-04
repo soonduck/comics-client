@@ -19,8 +19,9 @@ export const Login = ({ onLogin, token }) => {
       const cookies = new Cookies();
 
       if (cookies.get('x-jwt')) {
-        history.push('/');
         onLogin(cookies.get('x-jwt'));
+        history.push('/');
+        document.location.reload();
       }
       if (!res.data.ok) setLoginFail(true);
     });

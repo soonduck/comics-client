@@ -33,12 +33,13 @@ export const Main = () => {
 
     try {
       api.get('user/my-info').then((res) => {
-        onLogin(cookies.get('x-jwt') || '');
-        onMyInfo(res.data);
+        if (res.data) {
+          onMyInfo(res.data);
+        } else {
+          cookies.remove('x-jwt');
+        }
       });
-    } catch (error) {
-      cookies.remove('x-jwt');
-    }
+    } catch (error) {}
   }, [pathname]);
 
   return (

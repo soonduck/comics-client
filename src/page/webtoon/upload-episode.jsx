@@ -51,6 +51,7 @@ export const UploadEpisode = () => {
       setOversize(false);
     }
     event.target.value = '';
+    console.log(uploads);
   };
 
   const deleteSingleFile = (index) => {
@@ -88,10 +89,10 @@ export const UploadEpisode = () => {
           )
           .then((res) => {
             console.log(res);
+            history.push('/my-webtoon/' + pathname);
           });
       }
     });
-    history.push('/my-webtoon/' + pathname);
   };
 
   useEffect(() => {
@@ -126,10 +127,10 @@ export const UploadEpisode = () => {
         </div>
         <div className="flex">
           <h3>결제</h3>
-          <ul className="flex">
+          <ul className="flex list-pay-buttons">
             <li className="item-pay">
               <button
-                className={!episodeInput.pay ? 'btn-pay-checked' : ''}
+                className={!episodeInput.pay ? 'btn-pay-checked' : 'btn-pay'}
                 type="button"
                 onClick={() => {
                   setEpisodeInput({ ...episodeInput, pay: false });
@@ -140,7 +141,7 @@ export const UploadEpisode = () => {
             </li>
             <li className="item-pay">
               <button
-                className={episodeInput.pay ? 'btn-pay-checked' : ''}
+                className={episodeInput.pay ? 'btn-pay-checked' : 'btn-pay'}
                 type="button"
                 onClick={() => {
                   setEpisodeInput({ ...episodeInput, pay: true });

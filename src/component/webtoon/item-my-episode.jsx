@@ -6,6 +6,7 @@ export const ItemMyEpisode = ({ url, title, createdAt, orderNum, webtoon }) => {
     api
       .get('webtoon/view/episode/' + orderNum + '?webtoonId=' + webtoon.id)
       .then((res) => {
+        console.log(orderNum, webtoon.id);
         if (res.data.ok) {
           history.push(
             '/view/episode/' + orderNum + '?webtoonId=' + webtoon.id,
@@ -20,7 +21,7 @@ export const ItemMyEpisode = ({ url, title, createdAt, orderNum, webtoon }) => {
         <button onClick={onClickEpisode} className="flex btn-my-episode">
           <img src={url} alt="" className="small-thumbnail" />
         </button>
-        <button className="flex btn-my-episode-info">
+        <button className="flex btn-my-episode-info" onClick={onClickEpisode}>
           <span className="episode-title">{title}</span>
           <span className="episode-date">{createdAt}</span>
         </button>

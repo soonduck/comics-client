@@ -662,6 +662,8 @@ main{
       font-size: 0.9rem;
     }
     img{
+      width: 100px;
+      height: 130px;
       border-radius: $border-radius;
       object-fit: cover;
     }
@@ -728,6 +730,8 @@ main{
           justify-content: center;
         }
         img{
+          width: 100px;
+          height: 130px;
           border-radius: $border-radius;
         }
       }
