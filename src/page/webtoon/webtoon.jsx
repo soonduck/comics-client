@@ -8,7 +8,7 @@ import { TopInfoEpisodes } from '../../component/webtoon/top-info-episodes';
 
 export const Webtoon = ({
   webtoon,
-  episodes,
+  episodes = [],
   onSetWebtoon,
   webtoonId,
   onSetEpisode,

@@ -56,7 +56,7 @@ export const UploadEpisode = () => {
 
   const deleteSingleFile = (index) => {
     let result = [...uploads];
-    result[index] = null;
+    result.slice(index, 1);
     setUploads(result);
   };
 
@@ -66,7 +66,7 @@ export const UploadEpisode = () => {
     const formDataFiles = new FormData();
     const formDataThumbnail = new FormData();
     for (let i = 0; i < uploads.length; i++) {
-      if (uploads[i]) formDataFiles.append('files', uploads[i]);
+      formDataFiles.append('files', uploads[i]);
     }
     if (upload) {
       formDataThumbnail.append('file', upload);

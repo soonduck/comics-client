@@ -25,21 +25,20 @@ export const EditMyInfo = () => {
     setUsername(target.value);
   };
 
-  const editMyInfo = () => {
+  const editMyInfo = async () => {
     if (upload) {
       const formData = new FormData();
       formData.append('file', upload);
 
-      api.post('user/picUpload', formData).then((res) => {
+      await api.post('user/picUpload', formData).then((res) => {
         console.log(res);
       });
     }
-    api.post('user/edit-info', { username }).then((res) => {
+    await api.post('user/edit-info', { username }).then((res) => {
       console.log(res);
     });
 
     history.push('/my-info');
-    document.location.reload();
   };
 
   const setPreview = (event) => {
