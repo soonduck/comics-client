@@ -24,6 +24,12 @@ export const MyWebtoon = () => {
     history.push('/webtoon/upload-episode/' + pathname);
   };
 
+  const deleteWebtoon = () => {
+    api.get('webtoon/delete/' + pathname).then(() => {
+      history.push('/');
+    });
+  };
+
   useEffect(() => {
     api.get('webtoon/get/my-webtoon-info/' + pathname).then((res) => {
       onSetWebtoon(res.data);
@@ -51,7 +57,13 @@ export const MyWebtoon = () => {
               신규 회차 등록
             </button>
             <button className="btn-edit-webtoon">작품 정보 수정</button>
-            <button className="btn-delete-webtoon">작품 삭제</button>
+            <button
+              className="btn-delete-webtoon"
+              type="button"
+              onClick={deleteWebtoon}
+            >
+              작품 삭제
+            </button>
           </div>
         </div>
       </div>
