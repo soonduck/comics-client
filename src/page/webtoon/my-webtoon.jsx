@@ -78,6 +78,7 @@ export const MyWebtoon = () => {
               id={id}
               title={name}
               url={thumbnailUrl}
+              key={id}
               createdAt={createdAt.slice(0, 10).split('-').join('.')}
             />
           ))}

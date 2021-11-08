@@ -15,6 +15,14 @@ export const ItemMyEpisode = ({ url, title, createdAt, orderNum, webtoon }) => {
         }
       });
   };
+  const deleteEpisode = async () => {
+    await api
+      .get('webtoon/delete-episode/' + orderNum + '?webtoonId=' + webtoon.id)
+      .then((res) => {
+        console.log(res);
+      });
+    document.location.reload();
+  };
   return (
     <li className="item-my-episode flex">
       <div className="episode-left flex">
@@ -28,7 +36,9 @@ export const ItemMyEpisode = ({ url, title, createdAt, orderNum, webtoon }) => {
       </div>
       <div className="edit-episode-buttons">
         <button>수정</button>
-        <button>삭제</button>
+        <button type="button" onClick={deleteEpisode}>
+          삭제
+        </button>
       </div>
     </li>
   );
