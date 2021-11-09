@@ -15,7 +15,7 @@ export const WebtoonContainer = () => {
   const params = useParams();
 
   // dispatch for webtoon component
-  const onSetWebtoon = (webtoon, episodes) =>
+  const onSetWebtoon = ({ webtoon, episodes }) =>
     dispatch(setWebtoon(webtoon, episodes));
   const onSetEpisode = (episode) => dispatch(setEpisode(episode));
 

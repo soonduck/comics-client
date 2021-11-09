@@ -186,6 +186,7 @@ export const Register = ({ genres, onSetGenres }) => {
               )}
             </label>
           </button>
+          {oversize ? <span>3MB 이하의 파일을 업로드 해주세요.</span> : ''}
         </div>
         <div className="buttons-submit-webtoon flex">
           <button type="button">취소</button>

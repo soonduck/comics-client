@@ -191,3 +191,11 @@ i.fa-camera-retro, .input-nickname-desc{
     border: none;
   }
 }
+
+.buttons-episode-order.border{
+  border: 1px solid $main-gray;
+  background: $main-white;
+}
+.btn-episode-dropdown{
+  border-top: 1px solid $main-gray;
+}

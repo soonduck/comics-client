@@ -31,9 +31,11 @@ export const MyWebtoon = () => {
   };
 
   useEffect(() => {
-    api.get('webtoon/get/my-webtoon-info/' + pathname).then((res) => {
-      onSetWebtoon(res.data);
-    });
+    api
+      .get('webtoon/get/my-webtoon-info/' + pathname + '?orderNum=1')
+      .then((res) => {
+        onSetWebtoon(res.data);
+      });
   }, []);
 
   return (
@@ -69,19 +71,27 @@ export const MyWebtoon = () => {
       </div>
 
       <div className="my-webtoon-episodes wrap">
-        <TopInfoEpisodes episodes={episodes} my={true} />
+        <TopInfoEpisodes
+          episodes={episodes}
+          onSetWebtoon={onSetWebtoon}
+          webtoonId={pathname}
+        />
         <ul className="list-my-episode flex">
-          {episodes.map(({ id, thumbnailUrl, createdAt, name, orderNum }) => (
-            <ItemMyEpisode
-              webtoon={webtoon}
-              orderNum={orderNum}
-              id={id}
-              title={name}
-              url={thumbnailUrl}
-              key={id}
-              createdAt={createdAt.slice(0, 10).split('-').join('.')}
-            />
-          ))}
+          {episodes
+            ? episodes.map(
+                ({ id, thumbnailUrl, createdAt, name, orderNum }) => (
+                  <ItemMyEpisode
+                    webtoon={webtoon}
+                    orderNum={orderNum}
+                    id={id}
+                    title={name}
+                    url={thumbnailUrl}
+                    key={id}
+                    createdAt={createdAt.slice(0, 10).split('-').join('.')}
+                  />
+                ),
+              )
+            : ''}
         </ul>
       </div>
     </section>

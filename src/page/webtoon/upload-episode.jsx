@@ -210,6 +210,7 @@ export const UploadEpisode = () => {
               id="myEpisodeImage"
               onChange={onSetUploads}
               className="a11yHidden"
+              accept="image/*"
             />
           </div>
         </div>

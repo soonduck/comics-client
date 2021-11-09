@@ -8,7 +8,7 @@ import { TopInfoEpisodes } from '../../component/webtoon/top-info-episodes';
 
 export const Webtoon = ({
   webtoon,
-  episodes = [],
+  episodes,
   onSetWebtoon,
   webtoonId,
   onSetEpisode,
@@ -18,8 +18,8 @@ export const Webtoon = ({
   const [commentCount, setCommentCount] = useState(0);
 
   useEffect(() => {
-    api.get('webtoon/info/' + webtoonId).then((res) => {
-      onSetWebtoon(res.data.webtoon, res.data.episodes);
+    api.get('webtoon/info/' + webtoonId + '?orderNum=' + 1).then((res) => {
+      onSetWebtoon(res.data);
     });
     api.get('comment/webtoon/' + webtoonId).then((res) => {
       if (res.data) setCommentCount(res.data);
@@ -32,23 +32,31 @@ export const Webtoon = ({
       {login ? <NeedLogin setLogin={setLogin} /> : ''}
       <WebtoonInfo webtoon={webtoon} commentCount={commentCount} />
       <section className="webtoon-episodes wrap">
-        <TopInfoEpisodes episodes={episodes} />
+        <TopInfoEpisodes
+          episodes={episodes}
+          onSetWebtoon={onSetWebtoon}
+          webtoonId={webtoonId}
+        />
         <ul className="list-episode flex">
-          {episodes.map((episode) => (
-            <ItemEpisode
-              info={true}
-              key={episode.id}
-              orderNum={episode.orderNum}
-              name={episode.name}
-              id={episode.id}
-              url={episode.thumbnailUrl}
-              createdAt={episode.createdAt}
-              onSetEpisode={onSetEpisode}
-              setPay={setPay}
-              setLogin={setLogin}
-              webtoon={webtoon}
-            />
-          ))}
+          {episodes
+            ? episodes.map(
+                ({ id, thumbnailUrl, createdAt, name, orderNum }) => (
+                  <ItemEpisode
+                    info={true}
+                    key={id}
+                    orderNum={orderNum}
+                    name={name}
+                    id={id}
+                    url={thumbnailUrl}
+                    createdAt={createdAt}
+                    onSetEpisode={onSetEpisode}
+                    setPay={setPay}
+                    setLogin={setLogin}
+                    webtoon={webtoon}
+                  />
+                ),
+              )
+            : ''}
         </ul>
       </section>
     </>
