@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import api from '../../lib/api';
 import history from '../../lib/history';
-import { myInfo } from '../../redux/user/user.action';
 
 export const EditMyInfo = () => {
   const { user } = useSelector((state) => ({
     user: state?.userReducer.user,
   }));
+
+  if (!user) history.push('/');
 
   const [pic, setPic] = useState();
   const [upload, setUpload] = useState();

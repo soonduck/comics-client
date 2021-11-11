@@ -6,6 +6,8 @@ export const Info = () => {
     user: state?.userReducer.user,
   }));
 
+  if (!user) history.push('/');
+
   const disableAccount = () => {};
   return (
     <section className="wrap section-my-info flex">
