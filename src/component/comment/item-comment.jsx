@@ -8,9 +8,11 @@ export const ItemComment = ({
   likeCount,
   user,
   createdAt,
+  myComment,
 }) => {
   const [liked, setLiked] = useState(isLiked);
   const [count, setCount] = useState(likeCount);
+  console.log(myComment);
   const like = () => {
     api.get('comment/like/' + id).then((res) => {
       console.log(res);
@@ -30,6 +32,13 @@ export const ItemComment = ({
             <span className="date-comment">
               {createdAt.slice(0, 10).split('-').join('.')}
             </span>
+            {myComment ? (
+              <button type="button" className="btn-delete-comment">
+                delete
+              </button>
+            ) : (
+              ''
+            )}
           </div>
           <p>{content}</p>
           <div className="hearts">

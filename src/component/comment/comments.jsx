@@ -6,9 +6,18 @@ export const Comments = ({ episodeComments }) => {
     <ul className="list-comments wrap flex">
       {episodeComments.comments
         ? episodeComments.comments.map(
-            ({ content, id, isLiked, likeCount, user, createdAt }) => {
+            ({
+              content,
+              id,
+              isLiked,
+              likeCount,
+              user,
+              createdAt,
+              myComment,
+            }) => {
               return (
                 <ItemComment
+                  myComment={myComment}
                   createdAt={createdAt}
                   user={user}
                   likeCount={likeCount}

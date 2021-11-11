@@ -20,7 +20,10 @@ export const Webtoon = ({
 
   useEffect(() => {
     api.get('webtoon/info/' + webtoonId + '?orderNum=' + 1).then((res) => {
-      if (!res.data || !res.data.ok) history.push('/');
+      if (!res.data || !res.data.ok) {
+        history.push('/');
+        return;
+      }
       onSetWebtoon(res.data);
     });
     api.get('comment/webtoon/' + webtoonId).then((res) => {

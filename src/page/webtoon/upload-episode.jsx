@@ -97,7 +97,10 @@ export const UploadEpisode = () => {
 
   useEffect(() => {
     api.get('webtoon/orderNum/' + pathname).then((res) => {
-      if (!res.data || !res.data.ok) history.push('/');
+      if (!res.data || !res.data.ok) {
+        history.push('/');
+        return;
+      }
       setEpisodeInput({ ...episodeInput, orderNum: res.data.orderNum });
     });
   }, []);
