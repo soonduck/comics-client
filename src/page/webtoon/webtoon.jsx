@@ -5,6 +5,7 @@ import { WebtoonInfo } from '../../component/webtoon/webtoon-info';
 import { PayCoin } from '../../component/modal/pay-coin';
 import { NeedLogin } from '../../component/modal/need-login';
 import { TopInfoEpisodes } from '../../component/webtoon/top-info-episodes';
+import history from '../../lib/history';
 
 export const Webtoon = ({
   webtoon,
@@ -19,6 +20,7 @@ export const Webtoon = ({
 
   useEffect(() => {
     api.get('webtoon/info/' + webtoonId + '?orderNum=' + 1).then((res) => {
+      if (!res.data || !res.data.ok) history.push('/');
       onSetWebtoon(res.data);
     });
     api.get('comment/webtoon/' + webtoonId).then((res) => {

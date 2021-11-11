@@ -5,6 +5,7 @@ import { NeedLogin } from '../../component/modal/need-login';
 import { View } from '../../component/webtoon/view';
 import { Comments } from '../../component/comment/comments';
 import { WriteComment } from '../../component/comment/write-comment';
+import history from '../../lib/history';
 
 export const Viewer = ({
   orderNum,
@@ -20,6 +21,7 @@ export const Viewer = ({
   useEffect(() => {
     // 웹툰 아이디(쿼리)로 웹툰정보 업데이트
     api.get('webtoon/info/' + webtoonId).then((res) => {
+      if (!res.data || !res.data.ok) history.push('/');
       if (res.data.ok) onSetWebtoon(res.data.webtoon, res.data.episodes);
     });
     if (!episode.name) {

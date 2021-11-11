@@ -20,6 +20,7 @@ import { EditMyInfo } from '../page/user/edit-my-info';
 import { RegisterContainer } from '../container/webtoon/register.container';
 import { MyWebtoon } from '../page/webtoon/my-webtoon';
 import { UploadEpisode } from '../page/webtoon/upload-episode';
+import { NotFound } from '../page/notFound';
 
 export const Main = () => {
   const location = useLocation();
@@ -66,6 +67,7 @@ export const Main = () => {
         <Route path="/webtoon/:id" exact component={WebtoonContainer} />
         <Route path="/my-webtoon/:id" exact component={MyWebtoon} />
         <Route path="/view/episode/:id" exact component={ViewerContainer} />
+        <Route component={NotFound} />
       </Switch>
     </main>
   );

@@ -34,6 +34,7 @@ export const MyWebtoon = () => {
     api
       .get('webtoon/get/my-webtoon-info/' + pathname + '?orderNum=1')
       .then((res) => {
+        if (!res.data) history.push('/');
         onSetWebtoon(res.data);
       });
   }, []);

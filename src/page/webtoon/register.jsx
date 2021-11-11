@@ -12,13 +12,17 @@ import {
 
 export const Register = ({ genres, onSetGenres }) => {
   // 이거 전부 컨테이너로 옮기는 리팩토링 필요!!!
-  const { activeCategories, categories, selectedGenre } = useSelector(
+  const { activeCategories, categories, selectedGenre, user } = useSelector(
     (state) => ({
       activeCategories: state?.webtoonReducer.activeCategories,
       categories: state?.webtoonReducer.categories,
       selectedGenre: state?.webtoonReducer.selectedGenre,
+      user: state?.userReducer.user,
     }),
   );
+
+  if (!user) history.push('/');
+
   const dispatch = useDispatch();
   const onSetActiveCategories = (activeCategories) =>
     dispatch(setActiveCategories(activeCategories));
