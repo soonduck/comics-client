@@ -15,10 +15,12 @@ export const ItemComment = ({
   console.log(myComment);
   const like = () => {
     api.get('comment/like/' + id).then((res) => {
-      console.log(res);
       setLiked(res.data.isLiked);
       setCount(res.data.likeCount);
     });
+  };
+  const deleteComment = () => {
+    // api.get('comment/delete/' + id).then((res) => {});
   };
   return (
     <>
@@ -33,7 +35,11 @@ export const ItemComment = ({
               {createdAt.slice(0, 10).split('-').join('.')}
             </span>
             {myComment ? (
-              <button type="button" className="btn-delete-comment">
+              <button
+                type="button"
+                className="btn-delete-comment"
+                onClikck={deleteComment}
+              >
                 delete
               </button>
             ) : (

@@ -1,7 +1,6 @@
 import { ItemComment } from './item-comment';
 
 export const Comments = ({ episodeComments }) => {
-  console.log('123', episodeComments);
   return (
     <ul className="list-comments wrap flex">
       {episodeComments.comments

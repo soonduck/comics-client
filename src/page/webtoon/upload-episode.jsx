@@ -201,6 +201,7 @@ export const UploadEpisode = () => {
                         onClick={() => {
                           deleteSingleFile(index);
                         }}
+                        type="button"
                       >
                         delete
                       </button>
